@@ -26,7 +26,7 @@ const mongoDB = `mongodb+srv://shyaboi:${donus}@cluster0.zqw64.azure.mongodb.net
 var home = require('./routes/home');
 var postFlag = require('./routes/postFlag');
 var api = require('./routes/api');
-var ok = require('./routes/ok');
+var ok = require('./routes/ok.js');
 
 
 app.use('/', home);

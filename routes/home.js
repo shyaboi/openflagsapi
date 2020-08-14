@@ -65,4 +65,15 @@ router.get("/", (request, response) => {
     gertAll();
     // console.log(ok)
   });
+
+  router.get("/ok", function (request, response) {
+ 
+    response.json(
+     "ok")
+    
+  
+
+getAll();
+// console.log(ok)
+});
 module.exports = router;
