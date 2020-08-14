@@ -26,53 +26,56 @@ const mongoDB = `mongodb+srv://shyaboi:${donus}@cluster0.zqw64.azure.mongodb.net
 var home = require('./routes/home');
 var postFlag = require('./routes/postFlag');
 var api = require('./routes/api');
+var ok = require('./routes/ok');
 
 
 app.use('/', home);
-app.get("/api/:key?", function (request, response) {
-    let keyParam = request.params.key;
- console.log(keyParam)
+app.use('/ok', ok);
+
+// app.get("/api/:key?", function (request, response) {
+//     let keyParam = request.params.key;
+//  console.log(keyParam)
  
-    const getAll = () => {
-      MongoClient.connect(
-        mongoDB,
-        { useNewUrlParser: true, useUnifiedTopology: true },
-        function (err, db) {
-          if (err) throw err;
-          var dbo = db.db("Flags");
-          var mysort = {region:1}
-          dbo
-            .collection("flag")
-            .find({region:keyParam})
-            .sort(mysort)
-            .toArray(function (err, result) {
-              if (err) throw err;
-              // for (let i = 0; i < result.length; i++) {
-              //   const all = result[i];
-              // console.log("\x1b[35m", element.name);
-              // var getAl = all.name
-              // console.log(getAl)
-              const results = result.map((wall) => {
-                return wall;
-              });
-              const fileName = results;
-              // for (let i = 0; i < fileName.length; i++) {
-              //   const element = JSON.stringify(fileName[i].comment);
-              //   console.log(element)
-              // }
+//     const getAll = () => {
+//       MongoClient.connect(
+//         mongoDB,
+//         { useNewUrlParser: true, useUnifiedTopology: true },
+//         function (err, db) {
+//           if (err) throw err;
+//           var dbo = db.db("Flags");
+//           var mysort = {region:1}
+//           dbo
+//             .collection("flag")
+//             .find({region:keyParam})
+//             .sort(mysort)
+//             .toArray(function (err, result) {
+//               if (err) throw err;
+//               // for (let i = 0; i < result.length; i++) {
+//               //   const all = result[i];
+//               // console.log("\x1b[35m", element.name);
+//               // var getAl = all.name
+//               // console.log(getAl)
+//               const results = result.map((wall) => {
+//                 return wall;
+//               });
+//               const fileName = results;
+//               // for (let i = 0; i < fileName.length; i++) {
+//               //   const element = JSON.stringify(fileName[i].comment);
+//               //   console.log(element)
+//               // }
   
-              // }
-              db.close();
-              response.json(
-                fileName
-              );
-            });
-        }
-      );
-    };
-    getAll();
-    // console.log(ok)
-  });
+//               // }
+//               db.close();
+//               response.json(
+//                 fileName
+//               );
+//             });
+//         }
+//       );
+//     };
+//     getAll();
+//     // console.log(ok)
+//   });
 
 
 // routes--------------------------------------------------------------------------------------------------
