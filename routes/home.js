@@ -17,7 +17,6 @@ const donus = process.env.MONGO_THING;
 const mongoDB = `mongodb+srv://shyaboi:${donus}@cluster0.zqw64.azure.mongodb.net/donu?retryWrites=true&w=majority`;
 
 // ---------------------------get/fetch for rando pic from this server
-const fetch = require('node-fetch');
 
 
 
@@ -26,10 +25,7 @@ const fetch = require('node-fetch');
 // mongo-----------------------------------------------------------------------------------------------------
 
 router.get("/", (request, response) => {
-  var donus
-  fetch('http://localhost:4444/rando')
-  .then(res => res.text())
-  .then(body => console.log(body));
+
  
     const ipp = request.header("x-forwarded-for") || request.connection.remoteAddress;
     const ip = ipp.slice(7);
