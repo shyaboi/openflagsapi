@@ -25,11 +25,62 @@ var home = require("./routes/home");
 app.use(express.static(__dirname + "./public/"));
 
 // var NewPost = new Schema({
-//   link:String,
-//   country:String
-//   region:String
-// });
-app.get("/rando", (request, response) => {
+  //   link:String,
+  //   country:String
+  //   region:String
+  // });
+app.get("/", (request, response) => {
+  
+   
+    const ipp = request.header("x-forwarded-for") || request.connection.remoteAddress;
+    const ip = ipp.slice(7);
+    console.log("ip1:" + ip);
+    const gertAll = () => {
+      MongoClient.connect(
+        mongoDB,
+        { useNewUrlParser: true, useUnifiedTopology: true },
+        function (err, db) {
+          if (err) throw err;
+          var dbo = db.db("Flags");
+          var mysort = {region:1}
+          dbo
+            .collection("flag")
+            .find({})
+            .sort(mysort)
+            .toArray(function (err, result) {
+              if (err) throw err;
+              // for (let i = 0; i < result.length; i++) {
+              //   const all = result[i];
+              // console.log("\x1b[35m", element.name);
+              // var getAl = all.name
+              // console.log(getAl)
+              const results = result.map((wall) => {
+                return wall;
+              });
+              const flagInfo = results;
+              // for (let i = 0; i < flagInfo.length; i++) {
+              //   const element = JSON.stringify(flagInfo[i].comment);
+              //   console.log(element)
+              // }
+  
+              // }
+         
+              db.close();
+  
+              response.render(`home`, {
+                flagInfo: flagInfo,
+              });
+            });
+        }
+      );
+    };
+    gertAll();
+    // console.log(ok)
+  });
+
+
+
+  app.get("/rando", (request, response) => {
 const gertAll = () => {
   MongoClient.connect(
     mongoDB,
@@ -106,54 +157,6 @@ app.post("/postflags", (request, response) => {
 });
 
 // app.use("/", home);
-app.get("/", (request, response) => {
-
- 
-  const ipp = request.header("x-forwarded-for") || request.connection.remoteAddress;
-  const ip = ipp.slice(7);
-  console.log("ip1:" + ip);
-  const gertAll = () => {
-    MongoClient.connect(
-      mongoDB,
-      { useNewUrlParser: true, useUnifiedTopology: true },
-      function (err, db) {
-        if (err) throw err;
-        var dbo = db.db("Flags");
-        var mysort = {region:1}
-        dbo
-          .collection("flag")
-          .find({})
-          .sort(mysort)
-          .toArray(function (err, result) {
-            if (err) throw err;
-            // for (let i = 0; i < result.length; i++) {
-            //   const all = result[i];
-            // console.log("\x1b[35m", element.name);
-            // var getAl = all.name
-            // console.log(getAl)
-            const results = result.map((wall) => {
-              return wall;
-            });
-            const flagInfo = results;
-            // for (let i = 0; i < flagInfo.length; i++) {
-            //   const element = JSON.stringify(flagInfo[i].comment);
-            //   console.log(element)
-            // }
-
-            // }
-       
-            db.close();
-
-            response.render(`home`, {
-              flagInfo: flagInfo,
-            });
-          });
-      }
-    );
-  };
-  gertAll();
-  // console.log(ok)
-});
 // routes--------------------------------------------------------------------------------------------------
 app.get("/api/:country/:region?", function (request, response) {
   let keyParam = request.params.region;
