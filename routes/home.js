@@ -16,11 +16,20 @@ require("dotenv").config();
 const donus = process.env.MONGO_THING;
 const mongoDB = `mongodb+srv://shyaboi:${donus}@cluster0.zqw64.azure.mongodb.net/donu?retryWrites=true&w=majority`;
 
+// ---------------------------get/fetch for rando pic from this server
+const fetch = require('node-fetch');
+
+
+
 
 
 // mongo-----------------------------------------------------------------------------------------------------
 
 router.get("/", (request, response) => {
+  var donus
+  fetch('http://localhost:4444/rando')
+  .then(res => res.text())
+  .then(body => console.log(body));
  
     const ipp = request.header("x-forwarded-for") || request.connection.remoteAddress;
     const ip = ipp.slice(7);
@@ -47,16 +56,18 @@ router.get("/", (request, response) => {
               const results = result.map((wall) => {
                 return wall;
               });
-              const fileName = results;
-              // for (let i = 0; i < fileName.length; i++) {
-              //   const element = JSON.stringify(fileName[i].comment);
+              const flagInfo = results;
+              // for (let i = 0; i < flagInfo.length; i++) {
+              //   const element = JSON.stringify(flagInfo[i].comment);
               //   console.log(element)
               // }
   
               // }
+         
               db.close();
+
               response.render(`home`, {
-                fileName: fileName,
+                flagInfo: flagInfo,
               });
             });
         }
@@ -70,10 +81,5 @@ router.get("/", (request, response) => {
  
     response.json(
      "ok")
-    
-  
-
-getAll();
-// console.log(ok)
 });
 module.exports = router;

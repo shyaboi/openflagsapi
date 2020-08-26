@@ -1,21 +1,30 @@
-
-    <div class="container-lg">
-        <a href="/api">api</a>
-  <div class="row row-cols-5">
-        {{# each fileName}}
+<button style="position: fixed;">Random Flag Backround!</button>
+ 
 
 
-    <div class="col"><img src="/{{this.country}}/region/{{this.link}}" class="img-fluid" alt="Responsive image">
-   <a href="/{{this.country}}/region/{{this.link}}">Link</a> 
-   <p>Country: {{this.country}}</p>
-   <p>Region: {{this.region}}</p>
-   <p>direct link: <a href="http://localhost:4444/{{this.country}}/region/{{this.link}}"> http://localhost:4444/{{this.country}}/region/{{this.link}}</a> {{this.link2}}</p>
-  
-</div>
+<div class="container-lg">
+    <a href="/api">api</a>
+    <div class="row row-cols-6">
+        {{# each flagInfo}}
+
+
+        <div class="col mx-auto border" id="flagBox" style="margin: 1rem;">
+            <img src="/{{this.country}}/region/{{this.quickLink}}" class="img-fluid" alt="Responsive image">
+            <p>Country: {{this.country}}</p>
+            <p>Region: {{this.region}}</p>
+         
+              <a class="badge badge-primary text-wrap" style="width: 6rem;" href="http://localhost:4444/{{this.country}}/region/{{this.quickLink}}">
+                    Direct Link</a>
+                     <a class="badge badge-primary text-wrap" style="width: 6rem;" href="http://localhost:4444/api/{{this.country}}/{{this.region}}">
+                   API JSON</a>
+
+        </div>
 
         <div class="col">
-</div>
+        </div>
 
         {{/each}}
-  </div>
+    </div>
 </div>
+
+
