@@ -114,20 +114,20 @@ gertAll();
 });
 
 
-app.post("/postflags", (request, response) => {
-  var regionName = [];
+// app.post("/postflags", (request, response) => {
+//   var regionName = [];
 
-  var arrayOfFiles = fs.readdirSync("./public/usa/region");
-  // var regionName =JSON.stringify(arrayOfFiles)
-  const thing = arrayOfFiles.map((links) => {
-    let region = links.slice(0, -4);
-    let country = "usa";
-    let directLink =
-      "https://flagapi.ngrok.io/" + country + "/region/" + region + ".svg";
-    const quickLink = region + ".svg";
-    // const ID = uuidv4()
-    return { directLink, quickLink, region, country };
-  });
+//   var arrayOfFiles = fs.readdirSync("./public/usa/region");
+//   // var regionName =JSON.stringify(arrayOfFiles)
+//   const thing = arrayOfFiles.map((links) => {
+//     let region = links.slice(0, -4);
+//     let country = "usa";
+//     let directLink =
+//       "https://flagapi.ngrok.io/" + country + "/region/" + region + ".svg";
+//     const quickLink = region + ".svg";
+//     // const ID = uuidv4()
+//     return { directLink, quickLink, region, country };
+//   });
 
   // console.log(thing)
   // const mongoModle = new Model({
@@ -136,25 +136,25 @@ app.post("/postflags", (request, response) => {
   // });
 
   // let benix=[{link:thing},{region:thing2}]
-  console.log(thing);
-  MongoClient.connect(
-    mongoDB,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("Flags");
-      // var myobj = mongoModle;
-      dbo.collection("flag").insertMany(thing, function (err, res) {
-        if (err) throw err;
-        console.log("\x1b[36m", "flags posted!");
-        db.close();
-      });
-    }
-  );
-  setTimeout(() => {
-    response.redirect(`/`);
-  }, 300);
-});
+//   console.log(thing);
+//   MongoClient.connect(
+//     mongoDB,
+//     { useNewUrlParser: true, useUnifiedTopology: true },
+//     function (err, db) {
+//       if (err) throw err;
+//       var dbo = db.db("Flags");
+//       // var myobj = mongoModle;
+//       dbo.collection("flag").insertMany(thing, function (err, res) {
+//         if (err) throw err;
+//         console.log("\x1b[36m", "flags posted!");
+//         db.close();
+//       });
+//     }
+//   );
+//   setTimeout(() => {
+//     response.redirect(`/`);
+//   }, 300);
+// });
 
 // app.use("/", home);
 // routes--------------------------------------------------------------------------------------------------
