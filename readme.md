@@ -2,9 +2,9 @@
 this is a flag API currently in beta
 
 # Use Case
-The main usage intention for this flag API is to simply have an endpoint for a  <img src="image.svg"> html.
+The main usage intention for this flag API is to simply have an endpoint for a  <img src="image.svg"> html. or any other information helpful to users in JSON object form related to maps.
 
-The API endpoint can be use by any progrom that can work with images, SVGs, or JSON
+The API endpoint can be use by any program that can work with images, SVGs, URLs, or JSONs
 
 # Use
 You can use this API in the way you use most APIs, I will give some examples.
@@ -44,4 +44,58 @@ This will generate a JSON response similar to the example below;
 ```
 flagInfo":[{"_id":"5f51ca2c7cf1026aa0a50f95","directLink":"https://flagapi.ngrok.io/usa/region/colorado.svg","quickLink":"colorado.svg","region":"colorado","country":"usa"}]
 ```
-
+# Javascript Fetch Usage
+to use a javascript fetch request to get information into your JS code. you can make a similar request as the example below;
+```
+fetch('https://flagapi.ngrok.io/api/usa/colorado')
+  .then(response => response.json())
+  .then(data => console.log(data));
+  ```
+  The data variable alone will return many object from the server. The response will be similat to the example below;
+  ```
+  {flagInfo: Array(1)}
+flagInfo: Array(1)
+0:
+country: "usa"
+directLink: "https://flagapi.ngrok.io/usa/region/colorado.svg"
+quickLink: "colorado.svg"
+region: "colorado"
+_id: "5f51ca2c7cf1026aa0a50f95"
+__proto__: Object
+length: 1
+__proto__: Array(0)
+__proto__: Object
+```
+Currently most flag responses will only  return 1 position in the array, so it is safe to simply use data.flagInfo[0] with 0 in the array index. you can make a similar request as the example below;
+```
+  fetch('https://flagapi.ngrok.io/api/usa/colorado')
+  .then(response => response.json())
+  .then(data => console.log(data.flagInfo[0]));
+  The data.flagInfo[0] will return a JSON object from the input and desired region, and country.
+  ```
+  The response will be a JSON obeject similar to the example below;
+  ```
+  {_id: "5f51ca2c7cf1026aa0a50f95", directLink: "https://flagapi.ngrok.io/usa/region/colorado.svg", quickLink: "colorado.svg", region: "colorado", country: "usa"}
+country: "usa"
+directLink: "https://flagapi.ngrok.io/usa/region/colorado.svg"
+quickLink: "colorado.svg"
+region: "colorado"
+_id: "5f51ca2c7cf1026aa0a50f95"
+__proto__: Object
+```
+### Objects in the JSON object
+You can call the parameters inside the object with dot notation, similar to the example below;
+```
+fetch('https://flagapi.ngrok.io/api/usa/colorado')
+  .then(response => response.json())
+  .then(data => {
+      const flagPicLink =  data.flagInfo[0].directLink
+      console.log(flagPicLink)
+    });
+    ```
+    Setting a variable to the directLink obeject inside the flagInfo object will allow you to use any of the values in the object. In the above example, the response will simply be a string with a direct link to a SVG image; see below;
+    ```
+    https://flagapi.ngrok.io/usa/region/colorado.svg
+    ```
+    
+    

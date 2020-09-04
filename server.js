@@ -23,7 +23,7 @@ const mongoDB = `mongodb+srv://shyaboi:${donus}@cluster0.zqw64.azure.mongodb.net
 // routes--------------------------------------------------------------------------------------------------
 var home = require("./routes/home");
 app.use(express.static(__dirname + "./public/"));
-
+app.use("/docs", express.static("public"));
 // coooooooooooooooooorrrrrrrrrrrrrrrrrrrrrrrrrssssssssssssssssssssssssssssss
 
 app.use(function(req, res, next) {
@@ -39,8 +39,8 @@ app.use(function(req, res, next) {
   //   country:String
   //   region:String
   // });
-app.get("/api/docs", (request, response) => {
-  response.sendFile(path.join(__dirname + '/readme.md'));
+app.get("/docs/docs", (request, response) => {
+  response.render(`docs`);
 })
 
 
