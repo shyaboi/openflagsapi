@@ -1,5 +1,5 @@
 # Flag API
-this is a flag API currently in beta
+this is a flag API currently in αlpha
 
 # Use Case
 The main usage intention for this flag API is to simply have an endpoint for a  <img src="image.svg"> html. or any other information helpful to users in JSON object form related to maps.
@@ -8,11 +8,17 @@ The API endpoint can be use by any program that can work with images, SVGs, URLs
 
 # Use
 You can use this API in the way you use most APIs, I will give some examples.
+# Why are the documents the way they are?
+```
+People don't want to know how to do things line by line...
+They just want big chunks of example code that works with minimal changing.
+                                                                         -Shyaboi
+```
 
 # cURL Usage
 You can use this api with simple cURL requests.
 
-to get the full code of a .svg file your cURL request should look like the example below;
+To get the full code of a .svg file your cURL request should look like the example below;
 ```
 curl https://flagapi.ngrok.io/api/usa/colorado
 ```
@@ -30,7 +36,7 @@ The output of the request will look something similar to the example below;
 ```
 
 ### Download via cURL
-if you want to download the file locally via cURL, your cURL request should look like the example below;
+If you want to download the file locally via cURL, your cURL request should look like the example below;
 ```
 curl https://flagapi.ngrok.io/usa/region/colorado.svg -o coloradoflag.svg
 ```
@@ -45,13 +51,13 @@ This will generate a JSON response similar to the example below;
 flagInfo":[{"_id":"5f51ca2c7cf1026aa0a50f95","directLink":"https://flagapi.ngrok.io/usa/region/colorado.svg","quickLink":"colorado.svg","region":"colorado","country":"usa"}]
 ```
 # Javascript Fetch Usage
-to use a javascript fetch request to get information into your JS code. you can make a similar request as the example below;
+To use a Javascript fetch request to get information into your JS code. you can make a similar request as the example below;
 ```
 fetch('https://flagapi.ngrok.io/api/usa/colorado')
   .then(response => response.json())
   .then(data => console.log(data));
   ```
-  The data variable alone will return many object from the server. The response will be similat to the example below;
+  The data variable alone will return many objects from the server. The response will be similat to the example below;
   ```
   {flagInfo: Array(1)}
 flagInfo: Array(1)
@@ -92,10 +98,102 @@ fetch('https://flagapi.ngrok.io/api/usa/colorado')
       const flagPicLink =  data.flagInfo[0].directLink
       console.log(flagPicLink)
     });
-    ```
-    Setting a variable to the directLink obeject inside the flagInfo object will allow you to use any of the values in the object. In the above example, the response will simply be a string with a direct link to a SVG image; see below;
-    ```
-    https://flagapi.ngrok.io/usa/region/colorado.svg
-    ```
-    
-    
+```
+Setting a variable to after the flagInfo[0] obeject inside the flagInfo object will allow you to use any of the values in the object. In the above example, the response will simply be a string with a direct link to a SVG image; see below;
+```
+"https://flagapi.ngrok.io/usa/region/colorado.svg"
+```
+# Node.JS Usage
+### http module Usage
+To use Flag API with the standard Node library and not download any dependencies, or extra packages, follow the example bellow.
+```
+const https = require('https');
+
+https.get('https://flagapi.ngrok.io/api/usa/colorado', (response) => {
+  let data = '';
+
+  // called when a data chunk is received.
+  response.on('data', (chunk) => {
+   data = JSON.parse(chunk)
+    console.log(data)
+  });
+
+  // called when the complete response is received.
+  response.on('end', () => {
+    console.log(data);
+  });
+
+}).on("error", (error) => {
+  console.log("Error: " + error.message);
+});
+```
+  The data variable alone will return an object with an array of objects from the server. The response will be similat to the example below;
+  ```
+{
+  flagInfo: [
+    {
+      _id: '5f51ca2c7cf1026aa0a50f95',
+      directLink: 'https://flagapi.ngrok.io/usa/region/colorado.svg',
+      quickLink: 'colorado.svg',
+      region: 'colorado',
+      country: 'usa'
+    }
+  ]
+}
+```
+
+Currently most flag responses will only  return 1 position in the array, so it is safe to simply use data.flagInfo[0] with 0 in the array index to get the data from the main flagInfo object. you can make a similar request as the example below;
+
+```
+const https = require('https');
+
+https.get('https://flagapi.ngrok.io/api/usa/colorado', (response) => {
+  let data = '';
+
+  // called when a data chunk is received.
+  response.on('data', (chunk) => {
+   data = JSON.parse(chunk)
+    console.log(data.flagInfo[0])
+  });
+
+  // called when the complete response is received.
+  response.on('end', () => {
+    console.log(data.flagInfo[0]);
+  });
+
+}).on("error", (error) => {
+  console.log("Error: " + error.message);
+});
+```
+Running this code will return only a single flag JSON object, such as the example below;
+```
+ghgf
+```
+With dot notation on the JSON object of flagInfo[0] you can request specific items in the object, such as the example below;
+
+```
+const https = require('https');
+
+https.get('https://flagapi.ngrok.io/api/usa/colorado', (response) => {
+  let data = '';
+
+  // called when a data chunk is received.
+  response.on('data', (chunk) => {
+   data = JSON.parse(chunk)
+    console.log(data.flagInfo[0].directLink)
+  });
+
+  // called when the complete response is received.
+  response.on('end', () => {
+    console.log(data.flagInfo[0].directLink);
+  });
+
+}).on("error", (error) => {
+  console.log("Error: " + error.message);
+});
+```
+With 'directLink' after the data.flagInfo[0].directLink, the response from the API server will be the contects of dirctLink object, which is a String, such as the example below;
+```
+"https://flagapi.ngrok.io/usa/region/colorado.svg"
+```
+
