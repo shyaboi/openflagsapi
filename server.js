@@ -24,13 +24,27 @@ const mongoDB = `mongodb+srv://shyaboi:${donus}@cluster0.zqw64.azure.mongodb.net
 var home = require("./routes/home");
 app.use(express.static(__dirname + "./public/"));
 
+// coooooooooooooooooorrrrrrrrrrrrrrrrrrrrrrrrrssssssssssssssssssssssssssssss
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+// coooooooooooooooooorrrrrrrrrrrrrrrrrrrrrrrrrssssssssssssssssssssssssssssss
+
+
 // var NewPost = new Schema({
   //   link:String,
   //   country:String
   //   region:String
   // });
+app.get("/api/docs", (request, response) => {
+  response.sendFile(path.join(__dirname + '/readme.md'));
+})
+
+
 app.get("/", (request, response) => {
-  
    
     const ipp = request.header("x-forwarded-for") || request.connection.remoteAddress;
     const ip = ipp.slice(7);
