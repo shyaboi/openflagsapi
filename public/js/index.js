@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $("button").click(function () {
-    $.get("http://localhost:4444/rando", function (data, status) {
+    $.get("/rando", function (data, status) {
       // Set background image of a div on click of the button
 
       var imageUrl = data;

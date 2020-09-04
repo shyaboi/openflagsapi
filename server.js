@@ -123,7 +123,7 @@ app.post("/postflags", (request, response) => {
     let region = links.slice(0, -4);
     let country = "usa";
     let directLink =
-      "http://localhost:4444/" + country + "/region/" + region + ".svg";
+      "https://flagapi.ngrok.io/" + country + "/region/" + region + ".svg";
     const quickLink = region + ".svg";
     // const ID = uuidv4()
     return { directLink, quickLink, region, country };
