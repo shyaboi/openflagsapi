@@ -39,7 +39,7 @@ app.use(function(req, res, next) {
   //   country:String
   //   region:String
   // });
-app.get("/docs/docs", (request, response) => {
+app.get("/docs", (request, response) => {
   response.render(`docs`);
 })
 
