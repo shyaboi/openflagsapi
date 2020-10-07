@@ -142,7 +142,7 @@ gertAll();
 //     let region = links.slice(0, -4);
 //     let country = "usa";
 //     let directLink =
-//       "https://openflags.net/" + country + "/" + region + ".svg";
+//       "https://openflags.net/" + country + "/region/" + region + ".svg";
 //     const quickLink = region + ".svg";
 //     // const ID = uuidv4()
 //     return { directLink, quickLink, region, country };
