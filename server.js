@@ -17,11 +17,11 @@ const Schema = mongoose.Schema;
 require("dotenv").config();
 const donus = process.env.MONGO_THING;
 const mongoDB = `mongodb+srv://shyaboi:${donus}@cluster0.zqw64.azure.mongodb.net/donu?retryWrites=true&w=majority`;
-var NewPost = new Schema({
-  link:String,
-  // region:String
-});
-var Model = mongoose.model("NewPost", NewPost);
+// var NewPost = new Schema({
+//   link:String,
+//   // region:String
+// });
+// var Model = mongoose.model("NewPost", NewPost);
 
 // mongo-----------------------------------------------------------------------------------------------------
 
@@ -133,47 +133,47 @@ gertAll();
 });
 
 
-app.post("/postflags", (request, response) => {
-  var regionName = [];
+// app.post("/postflags", (request, response) => {
+//   var regionName = [];
 
-  var arrayOfFiles = fs.readdirSync("./public/usa/region");
-  // var regionName =JSON.stringify(arrayOfFiles)
-  const thing = arrayOfFiles.map((links) => {
-    let region = links.slice(0, -4);
-    let country = "usa";
-    let directLink =
-      "https://openflags.net/" + country + "/" + region + ".svg";
-    const quickLink = region + ".svg";
-    // const ID = uuidv4()
-    return { directLink, quickLink, region, country };
-  });
+//   var arrayOfFiles = fs.readdirSync("./public/usa/region");
+//   // var regionName =JSON.stringify(arrayOfFiles)
+//   const thing = arrayOfFiles.map((links) => {
+//     let region = links.slice(0, -4);
+//     let country = "usa";
+//     let directLink =
+//       "https://openflags.net/" + country + "/" + region + ".svg";
+//     const quickLink = region + ".svg";
+//     // const ID = uuidv4()
+//     return { directLink, quickLink, region, country };
+//   });
 
-  console.log(thing)
-  const mongoModle = new Model({
-  link:arrayOfFiles,
-  region:thing
-  });
+//   console.log(thing)
+//   const mongoModle = new Model({
+//   link:arrayOfFiles,
+//   region:thing
+//   });
 
-  // let benix=[{link:thing},{region:re}]
-  console.log(thing);
-  MongoClient.connect(
-    mongoDB,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("Flags");
-      // var myobj = mongoModle;
-      dbo.collection("flag").insertMany(thing, function (err, res) {
-        if (err) throw err;
-        console.log("\x1b[36m", "flags posted!");
-        db.close();
-      });
-    }
-  );
-  setTimeout(() => {
-    response.redirect(`/`);
-  }, 300);
-});
+//   // let benix=[{link:thing},{region:re}]
+//   console.log(thing);
+//   MongoClient.connect(
+//     mongoDB,
+//     { useNewUrlParser: true, useUnifiedTopology: true },
+//     function (err, db) {
+//       if (err) throw err;
+//       var dbo = db.db("Flags");
+//       // var myobj = mongoModle;
+//       dbo.collection("flag").insertMany(thing, function (err, res) {
+//         if (err) throw err;
+//         console.log("\x1b[36m", "flags posted!");
+//         db.close();
+//       });
+//     }
+//   );
+//   setTimeout(() => {
+//     response.redirect(`/`);
+//   }, 300);
+// });
 
 // app.use("/", home);
 // routes--------------------------------------------------------------------------------------------------
