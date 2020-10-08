@@ -196,4 +196,33 @@ With 'directLink' after the data.flagInfo[0].directLink, the response from the A
 ```
 "https://openflags.net/usa/region/colorado.svg"
 ```
+# JQuery Usage
+to use the api with JQuery, you can make a simple GET request, such as the example below;
+```
+$.get( "https://openflags.net/rando", function( data ) {
+ console.log(data)
+ })
+ ```
+ The 'data' will be an object or a string depending on which endpoints you hit. In the example aboves case, the result would be a string containing a direct link of a random flag .svg file.
+ 
+ # Python Usage
+ ## Request Module
 
+The simplest way to use Open Flags API with Python is with the requests module. First install it with;
+```
+pip install requests
+```
+Then in your python app, setup your GET request such as the code below;
+```
+import requests
+
+response = requests.get("https://openflags.net/api/usa/california")
+
+data = response.json()
+
+print(data)
+```
+The result will be a python list such as below;
+```
+{'flagInfo': [{'_id': '5f7e5591a46a711d00667b40', 'directLink': 'https://openflags.net/usa/region/california.svg', 'quickLink': 'california.svg', 'region': 'california', 'country': 'usa'}]}
+```

@@ -14,6 +14,6 @@ $(document).ready(function () {
 });
 var randFlag = $.get( "https://openflags.net/rando", function( data ) {
   // $("#logoRand").src=data;
-  console.log(typeof(data))
+  console.log(data)
   document.getElementById("logoRand").src=data;
 });

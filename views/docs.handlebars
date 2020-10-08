@@ -169,4 +169,27 @@ https.get('https://openflags.net/api/usa/colorado', (response) =&gt; {
 <p class="has-line-data" data-line-start="194" data-line-end="195">With ‘directLink’ after the data.flagInfo[0].directLink, the response from the API server will be the contects of dirctLink object, which is a String, such as the example below;</p>
 <pre><code class="has-line-data" data-line-start="196" data-line-end="198">&quot;https://openflags.net/usa/region/colorado.svg&quot;
 </code></pre>
+<h1 class="code-line" data-line-start=198 data-line-end=199 ><a id="JQuery_198"></a>JQuery Usage</h1>
+<p class="has-line-data" data-line-start="199" data-line-end="200">to use the api with JQuery, you can make a simple GET request, such as the example below;</p>
+<pre><code class="has-line-data" data-line-start="201" data-line-end="205">$.get( &quot;https://openflags.net/rando&quot;, function( data ) {
+ console.log(data)
+ })
+</code></pre>
+<p class="has-line-data" data-line-start="205" data-line-end="206">The ‘data’ will be an object or a string depending on which endpoints you hit. In the example aboves case, the result would be a string containing a direct link of a random flag .svg file.</p>
+<h1 class="code-line" data-line-start=207 data-line-end=208 ><a id="Python_207"></a>Python Usage</h1>
+<p class="has-line-data" data-line-start="209" data-line-end="210">The simplest way to use Open Flags API with Python is with the requests module. First install it with;</p>
+<pre><code class="has-line-data" data-line-start="211" data-line-end="213">pip install requests
+</code></pre>
+<p class="has-line-data" data-line-start="213" data-line-end="214">Then in your python app, setup your GET request such as the code below;</p>
+<pre><code class="has-line-data" data-line-start="215" data-line-end="223">import requests
+
+response = requests.get(&quot;https://openflags.net/api/usa/california&quot;)
+
+data = response.json()
+
+print(data)
+</code></pre>
+<p class="has-line-data" data-line-start="223" data-line-end="224">The result will be a python list such as below;</p>
+<pre><code class="has-line-data" data-line-start="225" data-line-end="227">{'flagInfo': [{'_id': '5f7e5591a46a711d00667b40', 'directLink': 'https://openflags.net/usa/region/california.svg', 'quickLink': 'california.svg', 'region': 'california', 'country': 'usa'}]}
+</code></pre>
 </body></html>
