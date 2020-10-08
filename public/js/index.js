@@ -1,3 +1,5 @@
+lazyload();
+
 $(document).ready(function () {
   $("#randFlag").click(function () {
     $.get("/rando", function (data, status) {
