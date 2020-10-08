@@ -17,11 +17,18 @@ const Schema = mongoose.Schema;
 require("dotenv").config();
 const donus = process.env.MONGO_THING;
 const mongoDB = `mongodb+srv://shyaboi:${donus}@cluster0.zqw64.azure.mongodb.net/donu?retryWrites=true&w=majority`;
-var NewPost = new Schema({
+var NewFlag = new Schema({
   link:String,
   // region:String
 });
-var Model = mongoose.model("NewPost", NewPost);
+var NewFAQ = new Schema({
+  person:String,
+  message:String,
+  type:String,
+  vote:Number
+});
+var FlagModel = mongoose.model("NewPost", NewFlag);
+var FAQsModel = mongoose.model("NewFAQPost", NewFAQ);
 
 // mongo-----------------------------------------------------------------------------------------------------
 
@@ -47,7 +54,9 @@ app.use(function(req, res, next) {
 app.get("/docs", (request, response) => {
   response.render(`docs`);
 })
-
+app.get("/faqs", (request, response) => {
+  response.render(`faqs`);
+})
 
 app.get("/", (request, response) => {
    
@@ -132,6 +141,37 @@ gertAll();
 // console.log(ok)
 });
 
+app.post("/newfaq", (request, response) => {
+  console.log(request.body)
+const person = 'person'
+const type = "type"
+const message = "message"
+const vote = 0
+  const mongoModle = new FAQsModel({
+  person:person,
+  message:message,
+  type:type,
+  vote:vote
+  });
+
+  MongoClient.connect(
+    mongoDB,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("Flags");
+      dbo.collection("faqs").insertOne(mongoModle, function (err, res) {
+        if (err) throw err;
+        console.log("\x1b[36m", "faq posted");
+        db.close();
+      });
+    }
+  );
+  setTimeout(() => {
+    response.redirect(`/`);
+  }, 300);
+});
+
 
 app.post("/postflags", (request, response) => {
   var regionName = [];
@@ -149,7 +189,7 @@ app.post("/postflags", (request, response) => {
   });
 
   console.log(thing)
-  const mongoModle = new Model({
+  const mongoModle = new FlagModel({
   link:arrayOfFiles,
   region:thing
   });
