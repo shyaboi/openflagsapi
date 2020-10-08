@@ -1,13 +1,13 @@
 $(document).ready(function () {
-  $("button").click(function () {
+  $("#randFlag").click(function () {
     $.get("/rando", function (data, status) {
       // Set background image of a div on click of the button
 
       var imageUrl = data;
-      $("body").parent().prev().prev().css({opacity:.2});
-      $("body").css('z-index', '-11');
-      $("body").css("background-image", `url(${imageUrl})`);
-      $("body").css('background-size','auto');
+      $("html").parent().prev().prev().css({opacity:.2});
+      $("html").css('z-index', '-11');
+      $("html").css("background-image", `url(${imageUrl})`);
+      $("html").css('background-size','auto');
     });
     // alert("Data: " + data + "\nStatus: " + status);
   });

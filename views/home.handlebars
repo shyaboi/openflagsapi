@@ -1,11 +1,11 @@
 
-<div class="container-lg">
-  <div class="row row-cols-6">
+<div class="container-fluid">
+  <div class="row row-cols-7">
     {{# each flagInfo}}
 
 
-    <div class="col mx-auto border" id="flagBox" style="margin: 1rem;">
-      <img src="/{{this.country}}/region/{{this.quickLink}}" class="img-fluid" alt="Responsive image">
+    <div class="col mx-auto border" id="flagBox" style="margin: .5rem;">
+    <a href="/{{this.country}}/region/{{this.quickLink}}"> <img src="/{{this.country}}/region/{{this.quickLink}}" class="img-fluid" alt="Responsive image"></a>
       <p>Country: {{this.country}}</p>
       <p>Region: {{this.region}}</p>
 
