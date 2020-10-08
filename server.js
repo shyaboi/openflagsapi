@@ -136,11 +136,11 @@ gertAll();
 app.post("/postflags", (request, response) => {
   var regionName = [];
 
-  var arrayOfFiles = fs.readdirSync("./public/mexico/region");
+  var arrayOfFiles = fs.readdirSync("./public/germany/region");
   // var regionName =JSON.stringify(arrayOfFiles)
   const thing = arrayOfFiles.map((links) => {
     let region = links.slice(0, -4);
-    let country = "mexico";
+    let country = "germany";
     let directLink =
       "https://openflags.net/" + country + "/region/" + region + ".svg";
     const quickLink = region + ".svg";
