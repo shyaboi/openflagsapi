@@ -1,8 +1,8 @@
 <h1>Ask a questiong to Open Flag API</h1>
-<form>
+<form method="POST" action="/newfaq">
   <div class="form-group">
     <label for="exampleFormControlSelect2">Are You a...</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
+    <select multiple class="form-control" id="exampleFormControlSelect2" name="person">
       <option>Developer</option>
       <option>Flag Enthusiest</option>
       <option>History Enthusiest</option>
@@ -11,11 +11,11 @@
   </div>
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Message</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message"></textarea>
   </div>
     <div class="form-group col-md-4">
       <label for="inputState">Type</label>
-      <select id="inputState" class="form-control">
+      <select id="inputState" class="form-control" name="type">
         <option selected>What do you call this message?</option>
         <option value="Question">Question</option>
         <option value="Suggestion">Suggestion</option>

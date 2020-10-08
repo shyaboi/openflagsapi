@@ -9,7 +9,10 @@ app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 app.use(express.static(__dirname + "/public"));
 const { v4: uuidv4 } = require("uuid");
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded());
 
+app.use(bodyParser.json());
 // mongo-----------------------------------------------------------------------------------------------------
 const { MongoClient } = require("mongodb");
 const mongoose = require("mongoose");
@@ -143,9 +146,9 @@ gertAll();
 
 app.post("/newfaq", (request, response) => {
   console.log(request.body)
-const person = 'person'
-const type = "type"
-const message = "message"
+const person = request.body.person
+const type = request.body.type
+const message = request.body.message
 const vote = 0
   const mongoModle = new FAQsModel({
   person:person,
