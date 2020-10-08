@@ -14,7 +14,7 @@ They just want big chunks of example code that works with minimal changing.
 <h1 class="code-line" data-line-start=17 data-line-end=18><a id="cURL_Usage_17"></a>cURL Usage</h1>
 <p class="has-line-data" data-line-start="18" data-line-end="19">You can use this api with simple cURL requests.</p>
 <p class="has-line-data" data-line-start="20" data-line-end="21">To get the full code of a .svg file your cURL request should look like the example below;</p>
-<pre><code class="has-line-data" data-line-start="22" data-line-end="24">curl https://flagapi.ngrok.io/api/usa/colorado
+<pre><code class="has-line-data" data-line-start="22" data-line-end="24">curl https://openflags.net/api/usa/colorado
 </code></pre>
 <p class="has-line-data" data-line-start="24" data-line-end="25">The output of the request will look something similar to the example below;</p>
 <pre><code class="has-line-data" data-line-start="26" data-line-end="36">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;
@@ -29,19 +29,19 @@ They just want big chunks of example code that works with minimal changing.
 </code></pre>
 <h3 class="code-line" data-line-start=37 data-line-end=38><a id="Download_via_cURL_37"></a>Download via cURL</h3>
 <p class="has-line-data" data-line-start="38" data-line-end="39">If you want to download the file locally via cURL, your cURL request should look like the example below;</p>
-<pre><code class="has-line-data" data-line-start="40" data-line-end="42">curl https://flagapi.ngrok.io/usa/region/colorado.svg -o coloradoflag.svg
+<pre><code class="has-line-data" data-line-start="40" data-line-end="42">curl https://openflags.net/usa/region/colorado.svg -o coloradoflag.svg
 </code></pre>
 <p class="has-line-data" data-line-start="42" data-line-end="43">The cURL will download the file in the current working directory, and give it the name following the “-o”</p>
 <h3 class="code-line" data-line-start=43 data-line-end=44><a id="cURL_JSON_43"></a>cURL JSON</h3>
 <p class="has-line-data" data-line-start="44" data-line-end="45">If you want to generate a JSON response to your cURL, cURL request should look like the example below;</p>
-<pre><code class="has-line-data" data-line-start="46" data-line-end="48">curl https://flagapi.ngrok.io/api/usa/colorado
+<pre><code class="has-line-data" data-line-start="46" data-line-end="48">curl https://openflags.net/api/usa/colorado
 </code></pre>
 <p class="has-line-data" data-line-start="48" data-line-end="49">This will generate a JSON response similar to the example below;</p>
-<pre><code class="has-line-data" data-line-start="50" data-line-end="52">flagInfo&quot;:[{&quot;_id&quot;:&quot;5f51ca2c7cf1026aa0a50f95&quot;,&quot;directLink&quot;:&quot;https://flagapi.ngrok.io/usa/region/colorado.svg&quot;,&quot;quickLink&quot;:&quot;colorado.svg&quot;,&quot;region&quot;:&quot;colorado&quot;,&quot;country&quot;:&quot;usa&quot;}]
+<pre><code class="has-line-data" data-line-start="50" data-line-end="52">flagInfo&quot;:[{&quot;_id&quot;:&quot;5f51ca2c7cf1026aa0a50f95&quot;,&quot;directLink&quot;:&quot;https://openflags.net/usa/region/colorado.svg&quot;,&quot;quickLink&quot;:&quot;colorado.svg&quot;,&quot;region&quot;:&quot;colorado&quot;,&quot;country&quot;:&quot;usa&quot;}]
 </code></pre>
 <h1 class="code-line" data-line-start=52 data-line-end=53><a id="Javascript_Fetch_Usage_52"></a>Javascript Fetch Usage</h1>
 <p class="has-line-data" data-line-start="53" data-line-end="54">To use a Javascript fetch request to get information into your JS code. you can make a similar request as the example below;</p>
-<pre><code class="has-line-data" data-line-start="55" data-line-end="59">fetch('https://flagapi.ngrok.io/api/usa/colorado')
+<pre><code class="has-line-data" data-line-start="55" data-line-end="59">fetch('https://openflags.net/api/usa/colorado')
   .then(response =&gt; response.json())
   .then(data =&gt; console.log(data));
 </code></pre>
@@ -50,7 +50,7 @@ They just want big chunks of example code that works with minimal changing.
 flagInfo: Array(1)
 0:
 country: &quot;usa&quot;
-directLink: &quot;https://flagapi.ngrok.io/usa/region/colorado.svg&quot;
+directLink: &quot;https://openflags.net/usa/region/colorado.svg&quot;
 quickLink: &quot;colorado.svg&quot;
 region: &quot;colorado&quot;
 _id: &quot;5f51ca2c7cf1026aa0a50f95&quot;
@@ -60,15 +60,15 @@ __proto__: Array(0)
 __proto__: Object
 </code></pre>
 <p class="has-line-data" data-line-start="74" data-line-end="75">Currently most flag responses will only return 1 position in the array, so it is safe to simply use data.flagInfo[0] with 0 in the array index. you can make a similar request as the example below;</p>
-<pre><code class="has-line-data" data-line-start="76" data-line-end="81">  fetch('https://flagapi.ngrok.io/api/usa/colorado')
+<pre><code class="has-line-data" data-line-start="76" data-line-end="81">  fetch('https://openflags.net/api/usa/colorado')
   .then(response =&gt; response.json())
   .then(data =&gt; console.log(data.flagInfo[0]));
   The data.flagInfo[0] will return a JSON object from the input and desired region, and country.
 </code></pre>
 <p class="has-line-data" data-line-start="81" data-line-end="82">The response will be a JSON obeject similar to the example below;</p>
-<pre><code class="has-line-data" data-line-start="83" data-line-end="91">{_id: &quot;5f51ca2c7cf1026aa0a50f95&quot;, directLink: &quot;https://flagapi.ngrok.io/usa/region/colorado.svg&quot;, quickLink: &quot;colorado.svg&quot;, region: &quot;colorado&quot;, country: &quot;usa&quot;}
+<pre><code class="has-line-data" data-line-start="83" data-line-end="91">{_id: &quot;5f51ca2c7cf1026aa0a50f95&quot;, directLink: &quot;https://openflags.net/usa/region/colorado.svg&quot;, quickLink: &quot;colorado.svg&quot;, region: &quot;colorado&quot;, country: &quot;usa&quot;}
 country: &quot;usa&quot;
-directLink: &quot;https://flagapi.ngrok.io/usa/region/colorado.svg&quot;
+directLink: &quot;https://openflags.net/usa/region/colorado.svg&quot;
 quickLink: &quot;colorado.svg&quot;
 region: &quot;colorado&quot;
 _id: &quot;5f51ca2c7cf1026aa0a50f95&quot;
@@ -76,7 +76,7 @@ __proto__: Object
 </code></pre>
 <h3 class="code-line" data-line-start=91 data-line-end=92><a id="Objects_in_the_JSON_object_91"></a>Objects in the JSON object</h3>
 <p class="has-line-data" data-line-start="92" data-line-end="93">You can call the parameters inside the object with dot notation, similar to the example below;</p>
-<pre><code class="has-line-data" data-line-start="94" data-line-end="101">fetch('https://flagapi.ngrok.io/api/usa/colorado')
+<pre><code class="has-line-data" data-line-start="94" data-line-end="101">fetch('https://openflags.net/api/usa/colorado')
   .then(response =&gt; response.json())
   .then(data =&gt; {
       const flagPicLink =  data.flagInfo[0].directLink
@@ -84,14 +84,14 @@ __proto__: Object
     });
 </code></pre>
 <p class="has-line-data" data-line-start="101" data-line-end="102">Setting a variable to after the flagInfo[0] obeject inside the flagInfo object will allow you to use any of the values in the object. In the above example, the response will simply be a string with a direct link to a SVG image; see below;</p>
-<pre><code class="has-line-data" data-line-start="103" data-line-end="105">&quot;https://flagapi.ngrok.io/usa/region/colorado.svg&quot;
+<pre><code class="has-line-data" data-line-start="103" data-line-end="105">&quot;https://openflags.net/usa/region/colorado.svg&quot;
 </code></pre>
 <h1 class="code-line" data-line-start=105 data-line-end=106><a id="NodeJS_Usage_105"></a>Node.JS Usage</h1>
 <h3 class="code-line" data-line-start=106 data-line-end=107><a id="http_module_Usage_106"></a>http module Usage</h3>
 <p class="has-line-data" data-line-start="107" data-line-end="108">To use Flag API with the standard Node library and not download any dependencies, or extra packages, follow the example bellow.</p>
 <pre><code class="has-line-data" data-line-start="109" data-line-end="129">const https = require('https');
 
-https.get('https://flagapi.ngrok.io/api/usa/colorado', (response) =&gt; {
+https.get('https://openflags.net/api/usa/colorado', (response) =&gt; {
   let data = '';
 
   // called when a data chunk is received.
@@ -114,7 +114,7 @@ https.get('https://flagapi.ngrok.io/api/usa/colorado', (response) =&gt; {
 flagInfo: [
   {
     _id: '5f51ca2c7cf1026aa0a50f95',
-    directLink: 'https://flagapi.ngrok.io/usa/region/colorado.svg',
+    directLink: 'https://openflags.net/usa/region/colorado.svg',
     quickLink: 'colorado.svg',
     region: 'colorado',
     country: 'usa'
@@ -125,7 +125,7 @@ flagInfo: [
 <p class="has-line-data" data-line-start="144" data-line-end="145">Currently most flag responses will only return 1 position in the array, so it is safe to simply use data.flagInfo[0] with 0 in the array index to get the data from the main flagInfo object. you can make a similar request as the example below;</p>
 <pre><code class="has-line-data" data-line-start="147" data-line-end="167">const https = require('https');
 
-https.get('https://flagapi.ngrok.io/api/usa/colorado', (response) =&gt; {
+https.get('https://openflags.net/api/usa/colorado', (response) =&gt; {
   let data = '';
 
   // called when a data chunk is received.
@@ -144,11 +144,11 @@ https.get('https://flagapi.ngrok.io/api/usa/colorado', (response) =&gt; {
 });
 </code></pre>
 <p class="has-line-data" data-line-start="167" data-line-end="168">Running this code will return only a single flag JSON object, such as the example below;</p>
-<pre><code class="has-line-data" data-line-start="169" data-line-end="171">"https://flagapi.ngrok.io/usa/region/colorado.svg"</code></pre>
+<pre><code class="has-line-data" data-line-start="169" data-line-end="171">"https://openflags.net/usa/region/colorado.svg"</code></pre>
 <p class="has-line-data" data-line-start="171" data-line-end="172">With dot notation on the JSON object of flagInfo[0] you can request specific items in the object, such as the example below;</p>
 <pre><code class="has-line-data" data-line-start="174" data-line-end="194">const https = require('https');
 
-https.get('https://flagapi.ngrok.io/api/usa/colorado', (response) =&gt; {
+https.get('https://openflags.net/api/usa/colorado', (response) =&gt; {
   let data = '';
 
   // called when a data chunk is received.
@@ -167,6 +167,6 @@ https.get('https://flagapi.ngrok.io/api/usa/colorado', (response) =&gt; {
 });
 </code></pre>
 <p class="has-line-data" data-line-start="194" data-line-end="195">With ‘directLink’ after the data.flagInfo[0].directLink, the response from the API server will be the contects of dirctLink object, which is a String, such as the example below;</p>
-<pre><code class="has-line-data" data-line-start="196" data-line-end="198">&quot;https://flagapi.ngrok.io/usa/region/colorado.svg&quot;
+<pre><code class="has-line-data" data-line-start="196" data-line-end="198">&quot;https://openflags.net/usa/region/colorado.svg&quot;
 </code></pre>
 </body></html>

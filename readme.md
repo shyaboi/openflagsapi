@@ -20,7 +20,7 @@ You can use this api with simple cURL requests.
 
 To get the full code of a .svg file your cURL request should look like the example below;
 ```
-curl https://flagapi.ngrok.io/api/usa/colorado
+curl https://openflags.net/api/usa/colorado
 ```
 The output of the request will look something similar to the example below;
 ```
@@ -38,22 +38,22 @@ The output of the request will look something similar to the example below;
 ### Download via cURL
 If you want to download the file locally via cURL, your cURL request should look like the example below;
 ```
-curl https://flagapi.ngrok.io/usa/region/colorado.svg -o coloradoflag.svg
+curl https://openflags.net/usa/region/colorado.svg -o coloradoflag.svg
 ```
 The cURL will download the file in the current working directory, and give it the name following the "-o"
 ### cURL JSON
 If you want to generate a JSON response to your cURL, cURL request should look like the example below;
 ```
-curl https://flagapi.ngrok.io/api/usa/colorado
+curl https://openflags.net/api/usa/colorado
 ```
 This will generate a JSON response similar to the example below;
 ```
-flagInfo":[{"_id":"5f51ca2c7cf1026aa0a50f95","directLink":"https://flagapi.ngrok.io/usa/region/colorado.svg","quickLink":"colorado.svg","region":"colorado","country":"usa"}]
+flagInfo":[{"_id":"5f51ca2c7cf1026aa0a50f95","directLink":"https://openflags.net/usa/region/colorado.svg","quickLink":"colorado.svg","region":"colorado","country":"usa"}]
 ```
 # Javascript Fetch Usage
 To use a Javascript fetch request to get information into your JS code. you can make a similar request as the example below;
 ```
-fetch('https://flagapi.ngrok.io/api/usa/colorado')
+fetch('https://openflags.net/api/usa/colorado')
   .then(response => response.json())
   .then(data => console.log(data));
   ```
@@ -63,7 +63,7 @@ fetch('https://flagapi.ngrok.io/api/usa/colorado')
 flagInfo: Array(1)
 0:
 country: "usa"
-directLink: "https://flagapi.ngrok.io/usa/region/colorado.svg"
+directLink: "https://openflags.net/usa/region/colorado.svg"
 quickLink: "colorado.svg"
 region: "colorado"
 _id: "5f51ca2c7cf1026aa0a50f95"
@@ -74,16 +74,16 @@ __proto__: Object
 ```
 Currently most flag responses will only  return 1 position in the array, so it is safe to simply use data.flagInfo[0] with 0 in the array index. you can make a similar request as the example below;
 ```
-  fetch('https://flagapi.ngrok.io/api/usa/colorado')
+  fetch('https://openflags.net/api/usa/colorado')
   .then(response => response.json())
   .then(data => console.log(data.flagInfo[0]));
   The data.flagInfo[0] will return a JSON object from the input and desired region, and country.
   ```
   The response will be a JSON obeject similar to the example below;
   ```
-  {_id: "5f51ca2c7cf1026aa0a50f95", directLink: "https://flagapi.ngrok.io/usa/region/colorado.svg", quickLink: "colorado.svg", region: "colorado", country: "usa"}
+  {_id: "5f51ca2c7cf1026aa0a50f95", directLink: "https://openflags.net/usa/region/colorado.svg", quickLink: "colorado.svg", region: "colorado", country: "usa"}
 country: "usa"
-directLink: "https://flagapi.ngrok.io/usa/region/colorado.svg"
+directLink: "https://openflags.net/usa/region/colorado.svg"
 quickLink: "colorado.svg"
 region: "colorado"
 _id: "5f51ca2c7cf1026aa0a50f95"
@@ -92,7 +92,7 @@ __proto__: Object
 ### Objects in the JSON object
 You can call the parameters inside the object with dot notation, similar to the example below;
 ```
-fetch('https://flagapi.ngrok.io/api/usa/colorado')
+fetch('https://openflags.net/api/usa/colorado')
   .then(response => response.json())
   .then(data => {
       const flagPicLink =  data.flagInfo[0].directLink
@@ -101,7 +101,7 @@ fetch('https://flagapi.ngrok.io/api/usa/colorado')
 ```
 Setting a variable to after the flagInfo[0] obeject inside the flagInfo object will allow you to use any of the values in the object. In the above example, the response will simply be a string with a direct link to a SVG image; see below;
 ```
-"https://flagapi.ngrok.io/usa/region/colorado.svg"
+"https://openflags.net/usa/region/colorado.svg"
 ```
 # Node.JS Usage
 ### http module Usage
@@ -109,7 +109,7 @@ To use Flag API with the standard Node library and not download any dependencies
 ```
 const https = require('https');
 
-https.get('https://flagapi.ngrok.io/api/usa/colorado', (response) => {
+https.get('https://openflags.net/api/usa/colorado', (response) => {
   let data = '';
 
   // called when a data chunk is received.
@@ -133,7 +133,7 @@ https.get('https://flagapi.ngrok.io/api/usa/colorado', (response) => {
   flagInfo: [
     {
       _id: '5f51ca2c7cf1026aa0a50f95',
-      directLink: 'https://flagapi.ngrok.io/usa/region/colorado.svg',
+      directLink: 'https://openflags.net/usa/region/colorado.svg',
       quickLink: 'colorado.svg',
       region: 'colorado',
       country: 'usa'
@@ -147,7 +147,7 @@ Currently most flag responses will only  return 1 position in the array, so it i
 ```
 const https = require('https');
 
-https.get('https://flagapi.ngrok.io/api/usa/colorado', (response) => {
+https.get('https://openflags.net/api/usa/colorado', (response) => {
   let data = '';
 
   // called when a data chunk is received.
@@ -174,7 +174,7 @@ With dot notation on the JSON object of flagInfo[0] you can request specific ite
 ```
 const https = require('https');
 
-https.get('https://flagapi.ngrok.io/api/usa/colorado', (response) => {
+https.get('https://openflags.net/api/usa/colorado', (response) => {
   let data = '';
 
   // called when a data chunk is received.
@@ -194,6 +194,6 @@ https.get('https://flagapi.ngrok.io/api/usa/colorado', (response) => {
 ```
 With 'directLink' after the data.flagInfo[0].directLink, the response from the API server will be the contects of dirctLink object, which is a String, such as the example below;
 ```
-"https://flagapi.ngrok.io/usa/region/colorado.svg"
+"https://openflags.net/usa/region/colorado.svg"
 ```
 
