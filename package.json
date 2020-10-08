@@ -16,7 +16,6 @@
     "express-handlebars": "^5.1.0",
     "jquery": "^3.5.1",
     "mongoose": "^5.9.29",
-    "nodemon": "^2.0.4",
-    "sequelize": "^6.3.4"
+    "nodemon": "^2.0.4"
   }
 }
