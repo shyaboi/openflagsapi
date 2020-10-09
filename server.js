@@ -209,11 +209,11 @@ const vote = 0
 app.post("/postflags", (request, response) => {
   var regionName = [];
 
-  var arrayOfFiles = fs.readdirSync("./public/germany/region");
+  var arrayOfFiles = fs.readdirSync("./public/england/region");
   // var regionName =JSON.stringify(arrayOfFiles)
   const thing = arrayOfFiles.map((links) => {
     let region = links.slice(0, -4);
-    let country = "germany";
+    let country = "england";
     let directLink =
       "https://openflags.net/" + country + "/region/" + region + ".svg";
     const quickLink = region + ".svg";
