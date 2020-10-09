@@ -58,8 +58,38 @@ app.get("/docs", (request, response) => {
   response.render(`docs`);
 })
 app.get("/faqs", (request, response) => {
-  response.render(`faqs`);
-})
+  const ipp = request.header("x-forwarded-for") || request.connection.remoteAddress;
+    const ip = ipp.slice(7);
+    console.log("ip1:" + ip);
+    const faqs = () => {
+      MongoClient.connect(
+        mongoDB,
+        { useNewUrlParser: true, useUnifiedTopology: true },
+        function (err, db) {
+          if (err) throw err;
+          var dbo = db.db("Flags");
+          var mysort = {vote:-1}
+          dbo
+            .collection("faqs")
+            .find({})
+            .sort(mysort)
+            .toArray(function (err, result) {
+              if (err) throw err;
+              const results = result.map((fakews) => {
+                return fakews;
+              });
+              const faq = results;
+              console.log(faq)
+              db.close();
+              response.render(`faqs`, {
+                faq: faq,
+              });
+            });
+        }
+      );
+    };
+    faqs();
+  });
 
 app.get("/", (request, response) => {
    
@@ -171,8 +201,8 @@ const vote = 0
     }
   );
   setTimeout(() => {
-    response.redirect(`/`);
-  }, 300);
+    response.redirect(`/faqs`);
+  }, 100);
 });
 
 
