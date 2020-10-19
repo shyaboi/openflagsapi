@@ -91,51 +91,54 @@ app.get("/faqs", (request, response) => {
     faqs();
   });
 
-app.get("/", (request, response) => {
+  var allFlags
+  const getAll = () => {
+    MongoClient.connect(
+      mongoDB,
+      { useNewUrlParser: true, useUnifiedTopology: true },
+      function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("Flags");
+        var mysort = {region:1}
+        dbo
+          .collection("flag")
+          .find({})
+          .sort(mysort)
+          .toArray(function (err, result) {
+            if (err) throw err;
+            // for (let i = 0; i < result.length; i++) {
+            //   const all = result[i];
+            // console.log("\x1b[35m", element.name);
+            // var getAl = all.name
+            // console.log(getAl)
+            const results = result.map((wall) => {
+              return wall;
+            });
+            allFlags = results;
+            // for (let i = 0; i < flagInfo.length; i++) {
+            //   const element = JSON.stringify(flagInfo[i].comment);
+            //   console.log(element)
+            // }
+
+            // }
+       
+            db.close();
+
+
+      }
+    );
+      }
+  )}
+  getAll();
+  console.log(allFlags)
+  app.get("/", (request, response) => {
    
     const ipp = request.header("x-forwarded-for") || request.connection.remoteAddress;
     const ip = ipp.slice(7);
     console.log("ip1:" + ip);
-    const getAll = () => {
-      MongoClient.connect(
-        mongoDB,
-        { useNewUrlParser: true, useUnifiedTopology: true },
-        function (err, db) {
-          if (err) throw err;
-          var dbo = db.db("Flags");
-          var mysort = {region:1}
-          dbo
-            .collection("flag")
-            .find({})
-            .sort(mysort)
-            .toArray(function (err, result) {
-              if (err) throw err;
-              // for (let i = 0; i < result.length; i++) {
-              //   const all = result[i];
-              // console.log("\x1b[35m", element.name);
-              // var getAl = all.name
-              // console.log(getAl)
-              const results = result.map((wall) => {
-                return wall;
-              });
-              const flagInfo = results;
-              // for (let i = 0; i < flagInfo.length; i++) {
-              //   const element = JSON.stringify(flagInfo[i].comment);
-              //   console.log(element)
-              // }
-  
-              // }
-         
-              db.close();
-  
-              response.render(`home`, {
-                flagInfo: flagInfo,
-              });
-            });
-        }
-      );
-    };
-    getAll();
+    response.render(`home`, {
+      flagInfo: allFlags,
+    });
     // console.log(ok)
   });
 
@@ -161,7 +164,7 @@ app.get("/", (request, response) => {
             for (let i = 0; i < 10; i++) {
               
               let dinus =  Math.floor(Math.random() * results.length)
-              console.log(dinus)
+              // console.log(dinus)
                 let link = results[dinus].directLink;
                 // console.log(randoLink)
                 links.push(link)
@@ -185,14 +188,14 @@ app.get("/", (request, response) => {
   app.get("/rando", (request, response) => {
    
     topRando = links.pop()
-    console.log(links)
+    // console.log(links)
     buildCache()
     response.json(topRando)
 // console.log(ok)
 });
 
 app.post("/newfaq", (request, response) => {
-  console.log(request.body)
+  // console.log(request.body)
 const person = request.body.person
 const type = request.body.type
 const message = request.body.message
@@ -269,7 +272,7 @@ const vote = 0
 // routes--------------------------------------------------------------------------------------------------
 app.get("/api/:country/:region?", function (request, response) {
   let keyParam = request.params.region;
-  console.log(request.params);
+  // console.log(request.params);
 
   const getAll = () => {
     MongoClient.connect(
