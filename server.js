@@ -37,6 +37,7 @@ var FAQsModel = mongoose.model("NewFAQPost", NewFAQ);
 
 // routes--------------------------------------------------------------------------------------------------
 var home = require("./routes/home");
+const { all } = require("./routes/home");
 app.use(express.static(__dirname + "./public/"));
 app.use("/docs", express.static("public"));
 // coooooooooooooooooorrrrrrrrrrrrrrrrrrrrrrrrrssssssssssssssssssssssssssssss
@@ -130,7 +131,7 @@ app.get("/faqs", (request, response) => {
       }
   )}
   getAll();
-  console.log(allFlags)
+  // console.log(allFlags)
   app.get("/", (request, response) => {
    
     const ipp = request.header("x-forwarded-for") || request.connection.remoteAddress;
@@ -272,33 +273,35 @@ const vote = 0
 // routes--------------------------------------------------------------------------------------------------
 app.get("/api/:country/:region?", function (request, response) {
   let keyParam = request.params.region;
-  // console.log(request.params);
+  // console.log(typeof(allFlags))
+ let flagInfo =  allFlags.find( record => record.region === keyParam)
+ console.log(flagInfo)
 
-  const getAll = () => {
-    MongoClient.connect(
-      mongoDB,
-      { useNewUrlParser: true, useUnifiedTopology: true },
-      function (err, db) {
-        if (err) throw err;
-        var dbo = db.db("Flags");
-        var mysort = { region: 1 };
-        dbo
-          .collection("flag")
-          .find({ region: keyParam })
-          .sort(mysort)
-          .toArray(function (err, result) {
-            if (err) throw err;
-            const results = result.map((wall) => {
-              return wall;
-            });
-            const flagInfo = results;
-            db.close();
+  // const getAll = () => {
+  //   MongoClient.connect(
+  //     mongoDB,
+  //     { useNewUrlParser: true, useUnifiedTopology: true },
+  //     function (err, db) {
+  //       if (err) throw err;
+  //       var dbo = db.db("Flags");
+  //       var mysort = { region: 1 };
+  //       dbo
+  //         .collection("flag")
+  //         .find({ region: keyParam })
+  //         .sort(mysort)
+  //         .toArray(function (err, result) {
+  //           if (err) throw err;
+  //           const results = result.map((wall) => {
+  //             return wall;
+  //           });
+  //           const flagInfo = results;
+  //           db.close();
             response.json({ flagInfo });
-          });
-      }
-    );
-  };
-  getAll();
+          // });
+      // }
+    // );
+  // };
+  // getAll();
   // console.log(ok)
 });
 
