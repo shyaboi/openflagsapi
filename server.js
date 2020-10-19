@@ -96,7 +96,7 @@ app.get("/", (request, response) => {
     const ipp = request.header("x-forwarded-for") || request.connection.remoteAddress;
     const ip = ipp.slice(7);
     console.log("ip1:" + ip);
-    const gertAll = () => {
+    const getAll = () => {
       MongoClient.connect(
         mongoDB,
         { useNewUrlParser: true, useUnifiedTopology: true },
@@ -135,42 +135,59 @@ app.get("/", (request, response) => {
         }
       );
     };
-    gertAll();
+    getAll();
     // console.log(ok)
   });
 
-
-
-  app.get("/rando", (request, response) => {
-const gertAll = () => {
-  MongoClient.connect(
-    mongoDB,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("Flags");
-      var mysort = {region:1}
-      dbo
-        .collection("flag")
-        .find({})
-        .sort(mysort)
-        .toArray(function (err, result) {
-          if (err) throw err;
-
-          const results = result.map((wall) => {
-            return wall;
+  var links = []
+  const gertAll = () => {
+    MongoClient.connect(
+      mongoDB,
+      { useNewUrlParser: true, useUnifiedTopology: true },
+      function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("Flags");
+        var mysort = {region:1}
+        dbo
+          .collection("flag")
+          .find({})
+          .sort(mysort)
+          .toArray(function (err, result) {
+            if (err) throw err;
+  
+            const results = result.map((wall) => {
+              return wall;
+            });
+            for (let i = 0; i < 10; i++) {
+              
+              let dinus =  Math.floor(Math.random() * results.length)
+              console.log(dinus)
+                let link = results[dinus].directLink;
+                // console.log(randoLink)
+                links.push(link)
+            }
+            db.close();
+            // response.json(randoLink);
+            // return links
           });
-        let dinus =  Math.floor(Math.random() * results.length)
-        console.log(dinus)
-          const randoLink = results[dinus].directLink;
-          // console.log(randoLink)
-          db.close();
-          response.json(randoLink);
-        });
+      }
+    );
+  };
+  gertAll();
+  
+  const buildCache = ()=> {
+    if(links.length < 10){
+      links.pop()
+      console.log('low on rando')
+      gertAll()
     }
-  );
-};
-gertAll();
+  }
+  app.get("/rando", (request, response) => {
+   
+    topRando = links.pop()
+    console.log(links)
+    buildCache()
+    response.json(topRando)
 // console.log(ok)
 });
 
