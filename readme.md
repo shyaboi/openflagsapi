@@ -226,3 +226,11 @@ The result will be a python list such as below;
 ```
 {'flagInfo': [{'_id': '5f7e5591a46a711d00667b40', 'directLink': 'https://openflags.net/usa/region/california.svg', 'quickLink': 'california.svg', 'region': 'california', 'country': 'usa'}]}
 ```
+
+
+# Contribution 
+Until I have more than myself working on this, I will need you to please contact me directly at
+<br />
+https://ianss.dev/contact or admin@mailpoem.com To contribute to the Open Flags API project.
+<br />
+I look forward to working with you ( ͡° ͜ʖ ͡°)
