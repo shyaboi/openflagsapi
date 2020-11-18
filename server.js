@@ -227,11 +227,11 @@ app.post("/newfaq", (request, response) => {
 app.post("/postflags", (request, response) => {
   var regionName = [];
 
-  var arrayOfFiles = fs.readdirSync("./public/brazil/region");
+  var arrayOfFiles = fs.readdirSync("./public/indonesia/region");
   // var regionName =JSON.stringify(arrayOfFiles)
   const thing = arrayOfFiles.map((links) => {
     let region = links.slice(0, -4);
-    let country = "brazil";
+    let country = "indonesia";
     let directLink =
       "https://openflags.net/" + country + "/region/" + region + ".svg";
     const quickLink = region + ".svg";
