@@ -9,7 +9,7 @@ app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 app.use(express.static(__dirname + "/public"));
 const { v4: uuidv4 } = require("uuid");
-var bodyParser = require('body-parser')
+var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded());
 
 app.use(bodyParser.json());
@@ -21,14 +21,14 @@ require("dotenv").config();
 const donus = process.env.MONGO_THING;
 const mongoDB = `mongodb+srv://shyaboi:${donus}@cluster0.zqw64.azure.mongodb.net/donu?retryWrites=true&w=majority`;
 var NewFlag = new Schema({
-  link:String,
+  link: String,
   // region:String
 });
 var NewFAQ = new Schema({
-  person:String,
-  message:String,
-  type:String,
-  vote:Number
+  person: String,
+  message: String,
+  type: String,
+  vote: Number,
 });
 var FlagModel = mongoose.model("NewPost", NewFlag);
 var FAQsModel = mongoose.model("NewFAQPost", NewFAQ);
@@ -42,170 +42,168 @@ app.use(express.static(__dirname + "./public/"));
 app.use("/docs", express.static("public"));
 // coooooooooooooooooorrrrrrrrrrrrrrrrrrrrrrrrrssssssssssssssssssssssssssssss
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
 // coooooooooooooooooorrrrrrrrrrrrrrrrrrrrrrrrrssssssssssssssssssssssssssssss
 
-
 // var NewPost = new Schema({
-  //   link:String,
-  //   country:String
-  //   region:String
-  // });
+//   link:String,
+//   country:String
+//   region:String
+// });
 app.get("/docs", (request, response) => {
   response.render(`docs`);
-})
+});
 app.get("/faqs", (request, response) => {
-  const ipp = request.header("x-forwarded-for") || request.connection.remoteAddress;
-    const ip = ipp.slice(7);
-    console.log("ip1:" + ip);
-    const faqs = () => {
-      MongoClient.connect(
-        mongoDB,
-        { useNewUrlParser: true, useUnifiedTopology: true },
-        function (err, db) {
-          if (err) throw err;
-          var dbo = db.db("Flags");
-          var mysort = {vote:-1}
-          dbo
-            .collection("faqs")
-            .find({})
-            .sort(mysort)
-            .toArray(function (err, result) {
-              if (err) throw err;
-              const results = result.map((fakews) => {
-                return fakews;
-              });
-              const faq = results;
-              console.log(faq)
-              db.close();
-              response.render(`faqs`, {
-                faq: faq,
-              });
-            });
-        }
-      );
-    };
-    faqs();
-  });
-
-  var allFlags
-  const getAll = () => {
+  const ipp =
+    request.header("x-forwarded-for") || request.connection.remoteAddress;
+  const ip = ipp.slice(7);
+  console.log("ip1:" + ip);
+  const faqs = () => {
     MongoClient.connect(
       mongoDB,
       { useNewUrlParser: true, useUnifiedTopology: true },
       function (err, db) {
         if (err) throw err;
         var dbo = db.db("Flags");
-        var mysort = {region:1}
+        var mysort = { vote: -1 };
         dbo
-          .collection("flag")
+          .collection("faqs")
           .find({})
           .sort(mysort)
           .toArray(function (err, result) {
             if (err) throw err;
-            // for (let i = 0; i < result.length; i++) {
-            //   const all = result[i];
-            // console.log("\x1b[35m", element.name);
-            // var getAl = all.name
-            // console.log(getAl)
-            const results = result.map((wall) => {
-              return wall;
+            const results = result.map((fakews) => {
+              return fakews;
             });
-            allFlags = results;
-            // for (let i = 0; i < flagInfo.length; i++) {
-            //   const element = JSON.stringify(flagInfo[i].comment);
-            //   console.log(element)
-            // }
-
-            // }
-       
+            const faq = results;
+            console.log(faq);
             db.close();
-
-
-      }
-    );
-      }
-  )}
-  getAll();
-  // console.log(allFlags)
-  app.get("/", (request, response) => {
-   
-    const ipp = request.header("x-forwarded-for") || request.connection.remoteAddress;
-    const ip = ipp.slice(7);
-    console.log("ip1:" + ip);
-    response.render(`home`, {
-      flagInfo: allFlags,
-    });
-    // console.log(ok)
-  });
-
-  var links = []
-  const gertAll = () => {
-    MongoClient.connect(
-      mongoDB,
-      { useNewUrlParser: true, useUnifiedTopology: true },
-      function (err, db) {
-        if (err) throw err;
-        var dbo = db.db("Flags");
-        var mysort = {region:1}
-        dbo
-          .collection("flag")
-          .find({})
-          .sort(mysort)
-          .toArray(function (err, result) {
-            if (err) throw err;
-  
-            const results = result.map((wall) => {
-              return wall;
+            response.render(`faqs`, {
+              faq: faq,
             });
-            for (let i = 0; i < 10; i++) {
-              
-              let dinus =  Math.floor(Math.random() * results.length)
-              // console.log(dinus)
-                let link = results[dinus].directLink;
-                // console.log(randoLink)
-                links.push(link)
-            }
-            db.close();
-            // response.json(randoLink);
-            // return links
           });
       }
     );
   };
-  gertAll();
-  
-  const buildCache = ()=> {
-    if(links.length < 10){
-      links.pop()
-      console.log('low on rando')
-      gertAll()
+  faqs();
+});
+
+var allFlags;
+const getAll = () => {
+  MongoClient.connect(
+    mongoDB,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("Flags");
+      var mysort = { region: 1 };
+      dbo
+        .collection("flag")
+        .find({})
+        .sort(mysort)
+        .toArray(function (err, result) {
+          if (err) throw err;
+          // for (let i = 0; i < result.length; i++) {
+          //   const all = result[i];
+          // console.log("\x1b[35m", element.name);
+          // var getAl = all.name
+          // console.log(getAl)
+          const results = result.map((wall) => {
+            return wall;
+          });
+          allFlags = results;
+          // for (let i = 0; i < flagInfo.length; i++) {
+          //   const element = JSON.stringify(flagInfo[i].comment);
+          //   console.log(element)
+          // }
+
+          // }
+
+          db.close();
+        });
     }
+  );
+};
+getAll();
+// console.log(allFlags)
+app.get("/", (request, response) => {
+  const ipp =
+    request.header("x-forwarded-for") || request.connection.remoteAddress;
+  const ip = ipp.slice(7);
+  console.log("ip1:" + ip);
+  response.render(`home`, {
+    flagInfo: allFlags,
+  });
+});
+
+var links = [];
+const gertAll = () => {
+  MongoClient.connect(
+    mongoDB,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("Flags");
+      var mysort = { region: 1 };
+      dbo
+        .collection("flag")
+        .find({})
+        .sort(mysort)
+        .toArray(function (err, result) {
+          if (err) throw err;
+
+          const results = result.map((wall) => {
+            return wall;
+          });
+          for (let i = 0; i < 10; i++) {
+            let dinus = Math.floor(Math.random() * results.length);
+            // console.log(dinus)
+            let link = results[dinus].directLink;
+            // console.log(randoLink)
+            links.push(link);
+          }
+          db.close();
+          // response.json(randoLink);
+          // return links
+        });
+    }
+  );
+};
+gertAll();
+
+const buildCache = () => {
+  if (links.length < 10) {
+    links.pop();
+    console.log("low on rando");
+    gertAll();
   }
-  app.get("/rando", (request, response) => {
-   
-    topRando = links.pop()
-    // console.log(links)
-    buildCache()
-    response.json(topRando)
-// console.log(ok)
+};
+app.get("/rando", (request, response) => {
+  topRando = links.pop();
+  // console.log(links)
+  buildCache();
+  response.json(topRando);
+  // console.log(ok)
 });
 
 app.post("/newfaq", (request, response) => {
   // console.log(request.body)
-const person = request.body.person
-const type = request.body.type
-const message = request.body.message
-const vote = 0
+  const person = request.body.person;
+  const type = request.body.type;
+  const message = request.body.message;
+  const vote = 0;
   const mongoModle = new FAQsModel({
-  person:person,
-  message:message,
-  type:type,
-  vote:vote
+    person: person,
+    message: message,
+    type: type,
+    vote: vote,
   });
 
   MongoClient.connect(
@@ -226,83 +224,54 @@ const vote = 0
   }, 100);
 });
 
+app.post("/postflags", (request, response) => {
+  var regionName = [];
 
-// app.post("/postflags", (request, response) => {
-//   var regionName = [];
+  var arrayOfFiles = fs.readdirSync("./public/brazil/region");
+  // var regionName =JSON.stringify(arrayOfFiles)
+  const thing = arrayOfFiles.map((links) => {
+    let region = links.slice(0, -4);
+    let country = "brazil";
+    let directLink =
+      "https://openflags.net/" + country + "/region/" + region + ".svg";
+    const quickLink = region + ".svg";
+    // const ID = uuidv4()
+    return { directLink, quickLink, region, country };
+  });
 
-//   var arrayOfFiles = fs.readdirSync("./public/england/region");
-//   // var regionName =JSON.stringify(arrayOfFiles)
-//   const thing = arrayOfFiles.map((links) => {
-//     let region = links.slice(0, -4);
-//     let country = "england";
-//     let directLink =
-//       "https://openflags.net/" + country + "/region/" + region + ".svg";
-//     const quickLink = region + ".svg";
-//     // const ID = uuidv4()
-//     return { directLink, quickLink, region, country };
-//   });
+  console.log(thing)
+  // const mongoModle = new FlagModel({
+  // link:arrayOfFiles,
+  // region:thing
+  // });
 
-//   console.log(thing)
-//   // const mongoModle = new FlagModel({
-//   // link:arrayOfFiles,
-//   // region:thing
-//   // });
-
-//   // let benix=[{link:thing},{region:re}]
-//   console.log(thing);
-//   MongoClient.connect(
-//     mongoDB,
-//     { useNewUrlParser: true, useUnifiedTopology: true },
-//     function (err, db) {
-//       if (err) throw err;
-//       var dbo = db.db("Flags");
-//       // var myobj = mongoModle;
-//       dbo.collection("flag").insertMany(thing, function (err, res) {
-//         if (err) throw err;
-//         console.log("\x1b[36m", "flags posted!");
-//         db.close();
-//       });
-//     }
-//   );
-//   setTimeout(() => {
-//     response.redirect(`/`);
-//   }, 300);
-// });
+  // let benix=[{link:thing},{region:re}]
+  console.log(thing);
+  MongoClient.connect(
+    mongoDB,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("Flags");
+      // var myobj = mongoModle;
+      dbo.collection("flag").insertMany(thing, function (err, res) {
+        if (err) throw err;
+        console.log("\x1b[36m", "flags posted!");
+        db.close();
+      });
+    }
+  );
+  setTimeout(() => {
+    response.redirect(`/`);
+  }, 300);
+});
 
 // app.use("/", home);
 // routes--------------------------------------------------------------------------------------------------
 app.get("/api/:country/:region?", function (request, response) {
   let keyParam = request.params.region;
-  // console.log(typeof(allFlags))
- let flagInfo =  allFlags.find( record => record.region === keyParam)
- console.log(flagInfo)
-
-  // const getAll = () => {
-  //   MongoClient.connect(
-  //     mongoDB,
-  //     { useNewUrlParser: true, useUnifiedTopology: true },
-  //     function (err, db) {
-  //       if (err) throw err;
-  //       var dbo = db.db("Flags");
-  //       var mysort = { region: 1 };
-  //       dbo
-  //         .collection("flag")
-  //         .find({ region: keyParam })
-  //         .sort(mysort)
-  //         .toArray(function (err, result) {
-  //           if (err) throw err;
-  //           const results = result.map((wall) => {
-  //             return wall;
-  //           });
-  //           const flagInfo = results;
-  //           db.close();
-            response.json({ flagInfo });
-          // });
-      // }
-    // );
-  // };
-  // getAll();
-  // console.log(ok)
+  let flagInfo = allFlags.find((record) => record.region === keyParam);
+  response.json({ flagInfo });
 });
 
 // dns call to server
