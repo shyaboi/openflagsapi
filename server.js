@@ -162,7 +162,7 @@ const gertAll = () => {
           const results = result.map((wall) => {
             return wall;
           });
-          for (let i = 0; i < 10; i++) {
+          for (let i = 0; i < 500; i++) {
             let dinus = Math.floor(Math.random() * results.length);
             // console.log(dinus)
             let link = results[dinus].directLink;
@@ -179,7 +179,7 @@ const gertAll = () => {
 gertAll();
 
 const buildCache = () => {
-  if (links.length < 10) {
+  if (links.length < 200) {
     links.pop();
     console.log("low on rando");
     gertAll();
