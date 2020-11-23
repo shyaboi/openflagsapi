@@ -224,6 +224,7 @@ app.post("/newfaq", (request, response) => {
   }, 100);
 });
 
+
 // app.post("/postflags", (request, response) => {
 //   var regionName = [];
 
@@ -273,6 +274,15 @@ app.get("/api/:country/:region?", function (request, response) {
   let flagInfo = allFlags.find((record) => record.region === keyParam);
   response.json({ flagInfo });
 });
+
+app.get("/api/:country/:regioncode?", (request, response) => {
+  let regionCode = request.params.regioncode;
+
+  response.json({ flagInfo:regionCode });
+
+})
+
+
 
 // dns call to server
 require("dns").lookup(require("os").hostname(), function (err, add, fam) {
