@@ -95,7 +95,9 @@ app.get("/faqs", (request, response) => {
   faqs();
 });
 
-var allFlags;
+let allFlags;
+let flagInfoArr;
+let links = [];
 
 const getAll = () => {
   MongoClient.connect(
@@ -126,9 +128,17 @@ const getAll = () => {
           // }
 
           // }
-
+          for (let i = 0; i < 300; i++) {
+          let dinus = Math.floor(Math.random() * allFlags.length);
+          // console.log(dinus)
+          let link = allFlags[dinus].directLink;
+          // console.log(randoLink)
+          links.push(link);
+       
+      };
           db.close();
         });
+        console.log('flags loaded')
     }
   );
 };
@@ -144,46 +154,28 @@ app.get("/", (request, response) => {
   });
 });
 
-var links = [];
-const gertAll = () => {
-  MongoClient.connect(
-    mongoDB,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("Flags");
-      var mysort = { region: 1 };
-      dbo
-        .collection("flag")
-        .find({})
-        .sort(mysort)
-        .toArray(function (err, result) {
-          if (err) throw err;
+// const gertAll = async () => {
 
-          const results = result.map((wall) => {
-            return wall;
-          });
-          for (let i = 0; i < 50; i++) {
-            let dinus = Math.floor(Math.random() * results.length);
-            // console.log(dinus)
-            let link = results[dinus].directLink;
-            // console.log(randoLink)
-            links.push(link);
-          }
-          db.close();
-          // response.json(randoLink);
-          // return links
-        });
-    }
-  );
-};
-gertAll();
+  
+          
+//     }
+  // );
+// };
+
+const fillRando = ()=> {
+  for (let i = 0; i < 300; i++) {
+  let dinus = Math.floor(Math.random() * allFlags.length);
+  // console.log(dinus)
+  let link = allFlags[dinus].directLink;
+  // console.log(randoLink)
+  links.push(link);
+};}
 
 const buildCache = () => {
-  if (links.length < 20) {
+  if (links.length < 200) {
     links.pop();
     console.log("low on rando");
-    gertAll();
+    fillRando()
   }
 };
 app.get("/rando", (request, response) => {
