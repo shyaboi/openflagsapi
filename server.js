@@ -96,6 +96,7 @@ app.get("/faqs", (request, response) => {
 });
 
 var allFlags;
+
 const getAll = () => {
   MongoClient.connect(
     mongoDB,
@@ -275,10 +276,13 @@ app.get("/api/:country/:region?", function (request, response) {
   response.json({ flagInfo });
 });
 
-app.get("/api/:country/:regioncode?", (request, response) => {
-  let regionCode = request.params.regioncode;
+app.get("/ISO3166-regionCode/:regionCode?", (request, response) => {
+  let regionCode = request.params.regionCode;
+  console.log(regionCode)
+ const rCode = allFlags.find((record) => record.regionCode === regionCode)
 
-  response.json({ flagInfo:regionCode });
+ console.log(rCode)
+  response.json({ flagInfo:rCode });
 
 })
 
