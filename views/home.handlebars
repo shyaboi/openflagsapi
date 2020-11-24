@@ -3,21 +3,23 @@
     {{# each flagInfo}}
 
 
-    <div class="col mx-auto border" id="flagBox" style="margin: .5rem;">
+    <div class="row mx-auto border" id="flagBox" style="margin: .5rem;">
       <a href="/{{this.country}}/region/{{this.quickLink}}"> <img
           src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs="
-          data-src="/{{this.country}}/region/{{this.quickLink}}" class="lazyload" width="200"
+          data-src="/{{this.country}}/region/{{this.quickLink}}" class="lazyload" width="300"
           alt="flag of {{this.region}}"></a>
-      <div class="justify-content-end">
+      <div class="col align-self-end">
         <p>Country: {{this.country}}</p>
         <p>Region: {{this.region}}</p>
         <p>ISO 3166: {{this.regionCode}}</p>
 
-        {{!-- <a class="badge badge-info text-wrap" style="width: 31rem; height: 2rem;" href="/{{this.country}}/region/{{this.quickLink}}">
-        Direct Link</a> --}}
-        <a class="badge badge-info text-wrap" style="width: 22rem; height: 2rem;"
-          href="/api/{{this.country}}/{{this.region}}">
-          API JSON</a>
+        <button class="btn btn-outline-success" type="button" style="width: 31rem; height: 2rem;" >
+          <a class="text-dark" href='/{{this.country}}/region/{{this.quickLink}}'> Direct Link</a>
+      </button>
+        <button class="btn btn-outline-success" type="button" style="width: 31rem; height: 2rem;">
+          <a class="text-dark" href="/api/{{this.country}}/{{this.region}}">API JSON</a>
+          
+          </button>
       </div>
     </div>
     {{/each}}
