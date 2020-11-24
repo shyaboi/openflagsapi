@@ -1,23 +1,42 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><title>Flag API.md</title></head><body id="preview">
-<h1 class="code-line" data-line-start=0 data-line-end=1><a id="Flag_API_0"></a>Flag API</h1>
-<p class="has-line-data" data-line-start="1" data-line-end="2">this is a flag API currently in <h1> αlpha</h1></p>
-<h1 class="code-line" data-line-start=3 data-line-end=4><a id="Use_Case_3"></a>Use Case</h1>
-<p class="has-line-data" data-line-start="4" data-line-end="5">The main usage intention for this flag API is to simply have an endpoint for a &lt;img src=“image.svg”&gt; html. or any other information helpful to users in JSON object form related to Flags.</p>
+<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Flag_API_0"></a>Flag API</h1>
+<p class="has-line-data" data-line-start="1" data-line-end="2">this is a flag API currently in αlpha</p>
+<h1 class="code-line" data-line-start=3 data-line-end=4 ><a id="Use_Case_3"></a>Use Case</h1>
+<p class="has-line-data" data-line-start="4" data-line-end="5">The main usage intention for this flag API is to simply have an endpoint for a  &lt;img src=“image.svg”&gt; html. or any other information helpful to users in JSON object form related to maps.</p>
 <p class="has-line-data" data-line-start="6" data-line-end="7">The API endpoint can be use by any program that can work with images, SVGs, URLs, or JSONs</p>
-<h1 class="code-line" data-line-start=8 data-line-end=9><a id="Use_8"></a>Use</h1>
-<p class="has-line-data" data-line-start="9" data-line-end="10">You can use this API in the way you use most APIs, I will give some examples.</p>
-<h1 class="code-line" data-line-start=10 data-line-end=11><a id="Why_are_the_documents_the_way_they_are_10"></a>Why are the documents the way they are?</h1>
-<pre><code class="has-line-data" data-line-start="12" data-line-end="16">People don't want to know how to do things line by line...
-They just want big chunks of example code that works with minimal changing.
-                                                                        -Shyaboi
+<h1 class="code-line" data-line-start=10 data-line-end=11 ><a id="Contribution_10"></a>Contribution</h1>
+<p class="has-line-data" data-line-start="11" data-line-end="12">Until I have more than myself working on this, I will need you to please contact me directly at</p>
+<p class="has-line-data" data-line-start="13" data-line-end="14"><a href="https://ianss.dev/contact">https://ianss.dev/contact</a> or <a href="mailto:admin@mailpoem.com">admin@mailpoem.com</a> To contribute to the Open Flags API project.</p>
+<p class="has-line-data" data-line-start="15" data-line-end="16">I look forward to working with you ( ͡° ͜ʖ ͡°)</p>
+<h1 class="code-line" data-line-start=17 data-line-end=18 ><a id="Why_are_the_documents_the_way_they_are_17"></a>Why are the documents the way they are?</h1>
+<pre><code class="has-line-data" data-line-start="19" data-line-end="23">People don't want to explained to death line by line...
+They just want big chunks of example code that gets the job done with minimal changing.
+                                                                                 -Shyaboi
 </code></pre>
-<h1 class="code-line" data-line-start=17 data-line-end=18><a id="cURL_Usage_17"></a>cURL Usage</h1>
-<p class="has-line-data" data-line-start="18" data-line-end="19">You can use this api with simple cURL requests.</p>
-<p class="has-line-data" data-line-start="20" data-line-end="21">To get the full code of a .svg file your cURL request should look like the example below;</p>
-<pre><code class="has-line-data" data-line-start="22" data-line-end="24">curl https://openflags.net/api/usa/colorado
+<h1 class="code-line" data-line-start=23 data-line-end=24 ><a id="Use_23"></a>Use</h1>
+<p class="has-line-data" data-line-start="24" data-line-end="25">Currently the Open Flags API returns JSON flagInfo data, and direct links to flag .svg images.</p>
+<h1 class="code-line" data-line-start=28 data-line-end=29 ><a id="Routes_28"></a>Routes</h1>
+<p class="has-line-data" data-line-start="29" data-line-end="31">There are several enpoints that you can get flag data from<br>
+The basic breakdown of routes is as follows;</p>
+<pre><code class="has-line-data" data-line-start="32" data-line-end="44">//will return a random link to a flag .svg
+GET https://openflags.net/rando     
+
+//will return a JSON of availible flagInfo based on country/region search
+GET https://openflags.net/api/:country/:region   
+
+//will return a JSON of availible flagInfo based on ISO 3166 region code
+GET https://openflags.net/ISO3166/:regionCode    
+
+//will return a direct link to the .svg flag at that country/region
+https://openflags.net/:country/:region/:region.svg
 </code></pre>
-<p class="has-line-data" data-line-start="24" data-line-end="25">The output of the request will look something similar to the example below;</p>
-<pre><code class="has-line-data" data-line-start="26" data-line-end="36">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;
+<h1 class="code-line" data-line-start=45 data-line-end=46 ><a id="cURL_Usage_45"></a>cURL Usage</h1>
+<p class="has-line-data" data-line-start="46" data-line-end="47">You can use this api with simple cURL requests.</p>
+<p class="has-line-data" data-line-start="48" data-line-end="49">To get the full code of a .svg file your cURL request should look like the example below;</p>
+<pre><code class="has-line-data" data-line-start="50" data-line-end="52">curl https://openflags.net/api/usa/colorado
+</code></pre>
+<p class="has-line-data" data-line-start="52" data-line-end="53">The output of the request will look something similar to the example below;</p>
+<pre><code class="has-line-data" data-line-start="54" data-line-end="64">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;
 &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;1800&quot; height=&quot;1200&quot;&gt;
 &lt;!-- Created per specification at http://www.50states.com/flag/coflag.htm by Robert Fleming --&gt;
  &lt;rect width=&quot;1800&quot; height=&quot;1200&quot; fill=&quot;#002868&quot;/&gt;
@@ -27,46 +46,61 @@ They just want big chunks of example code that works with minimal changing.
  &lt;circle cx=&quot;760&quot; cy=&quot;600&quot; r=&quot;200&quot; fill=&quot;gold&quot;/&gt;
 &lt;/svg&gt;
 </code></pre>
-<h3 class="code-line" data-line-start=37 data-line-end=38><a id="Download_via_cURL_37"></a>Download via cURL</h3>
-<p class="has-line-data" data-line-start="38" data-line-end="39">If you want to download the file locally via cURL, your cURL request should look like the example below;</p>
-<pre><code class="has-line-data" data-line-start="40" data-line-end="42">curl https://openflags.net/usa/region/colorado.svg -o coloradoflag.svg
+<h3 class="code-line" data-line-start=65 data-line-end=66 ><a id="Download_via_cURL_65"></a>Download via cURL</h3>
+<p class="has-line-data" data-line-start="66" data-line-end="67">If you want to download the file locally via cURL, your cURL request should look like the example below;</p>
+<pre><code class="has-line-data" data-line-start="68" data-line-end="70">curl https://openflags.net/usa/region/colorado.svg -o coloradoflag.svg
 </code></pre>
-<p class="has-line-data" data-line-start="42" data-line-end="43">The cURL will download the file in the current working directory, and give it the name following the “-o”</p>
-<h3 class="code-line" data-line-start=43 data-line-end=44><a id="cURL_JSON_43"></a>cURL JSON</h3>
-<p class="has-line-data" data-line-start="44" data-line-end="45">If you want to generate a JSON response to your cURL, cURL request should look like the example below;</p>
-<pre><code class="has-line-data" data-line-start="46" data-line-end="48">curl https://openflags.net/api/usa/colorado
+<p class="has-line-data" data-line-start="70" data-line-end="71">The cURL will download the file in the current working directory, and give it the name following the “-o”</p>
+<h3 class="code-line" data-line-start=71 data-line-end=72 ><a id="cURL_JSON_71"></a>cURL JSON</h3>
+<p class="has-line-data" data-line-start="72" data-line-end="73">If you want to generate a JSON response to your cURL, cURL request should look like the example below;</p>
+<pre><code class="has-line-data" data-line-start="74" data-line-end="76">curl https://openflags.net/api/usa/colorado
 </code></pre>
-<p class="has-line-data" data-line-start="48" data-line-end="49">This will generate a JSON response similar to the example below;</p>
-<pre><code class="has-line-data" data-line-start="50" data-line-end="52">flagInfo&quot;:[{&quot;_id&quot;:&quot;5f51ca2c7cf1026aa0a50f95&quot;,&quot;directLink&quot;:&quot;https://openflags.net/usa/region/colorado.svg&quot;,&quot;quickLink&quot;:&quot;colorado.svg&quot;,&quot;region&quot;:&quot;colorado&quot;,&quot;country&quot;:&quot;usa&quot;}]
+<p class="has-line-data" data-line-start="76" data-line-end="77">This will generate a JSON response similar to the example below;</p>
+<pre><code class="has-line-data" data-line-start="78" data-line-end="88">flagInfo&quot;:
+[{
+            &quot;_id&quot;:&quot;5f51ca2c7cf1026aa0a50f95&quot;,
+            &quot;directLink&quot;:&quot;https://openflags.net/usa/region/colorado.svg&quot;,
+            &quot;quickLink&quot;:&quot;colorado.svg&quot;,
+            &quot;region&quot;:&quot;colorado&quot;,
+            &quot;country&quot;:&quot;usa&quot;
+            &quot;regionCode&quot;:'US-CO'
+}]
 </code></pre>
-<h1 class="code-line" data-line-start=52 data-line-end=53><a id="Javascript_Fetch_Usage_52"></a>Javascript Fetch Usage</h1>
-<p class="has-line-data" data-line-start="53" data-line-end="54">To use a Javascript fetch request to get information into your JS code. you can make a similar request as the example below;</p>
-<pre><code class="has-line-data" data-line-start="55" data-line-end="59">fetch('https://openflags.net/api/usa/colorado')
+<h1 class="code-line" data-line-start=88 data-line-end=89 ><a id="Javascript_Fetch_Usage_88"></a>Javascript Fetch Usage</h1>
+<p class="has-line-data" data-line-start="89" data-line-end="90">To use a Javascript fetch request to get information into your JS code. you can make a similar request as the example below;</p>
+<pre><code class="has-line-data" data-line-start="91" data-line-end="95">fetch('https://openflags.net/api/usa/colorado')
   .then(response =&gt; response.json())
   .then(data =&gt; console.log(data));
 </code></pre>
-<p class="has-line-data" data-line-start="59" data-line-end="60">The data variable alone will return many objects from the server. The response will be similat to the example below;</p>
-<pre><code class="has-line-data" data-line-start="61" data-line-end="74">{flagInfo: Array(1)}
+<p class="has-line-data" data-line-start="95" data-line-end="96">The data variable alone will return many objects from the server. The response will be similat to the example below;</p>
+<pre><code class="has-line-data" data-line-start="97" data-line-end="111">{flagInfo: Array(1)}
 flagInfo: Array(1)
 0:
 country: &quot;usa&quot;
 directLink: &quot;https://openflags.net/usa/region/colorado.svg&quot;
 quickLink: &quot;colorado.svg&quot;
 region: &quot;colorado&quot;
+regionCode:'US-CO'
 _id: &quot;5f51ca2c7cf1026aa0a50f95&quot;
 __proto__: Object
 length: 1
 __proto__: Array(0)
 __proto__: Object
 </code></pre>
-<p class="has-line-data" data-line-start="74" data-line-end="75">Currently most flag responses will only return 1 position in the array, so it is safe to simply use data.flagInfo[0] with 0 in the array index. you can make a similar request as the example below;</p>
-<pre><code class="has-line-data" data-line-start="76" data-line-end="81">  fetch('https://openflags.net/api/usa/colorado')
+<p class="has-line-data" data-line-start="111" data-line-end="112">Currently most flag responses will only  return 1 position in the array, so it is safe to simply use data.flagInfo[0] with 0 in the array index. you can make a similar request as the example below;</p>
+<pre><code class="has-line-data" data-line-start="113" data-line-end="118">  fetch('https://openflags.net/api/usa/colorado')
   .then(response =&gt; response.json())
   .then(data =&gt; console.log(data.flagInfo[0]));
   The data.flagInfo[0] will return a JSON object from the input and desired region, and country.
 </code></pre>
-<p class="has-line-data" data-line-start="81" data-line-end="82">The response will be a JSON obeject similar to the example below;</p>
-<pre><code class="has-line-data" data-line-start="83" data-line-end="91">{_id: &quot;5f51ca2c7cf1026aa0a50f95&quot;, directLink: &quot;https://openflags.net/usa/region/colorado.svg&quot;, quickLink: &quot;colorado.svg&quot;, region: &quot;colorado&quot;, country: &quot;usa&quot;}
+<p class="has-line-data" data-line-start="118" data-line-end="119">The response will be a JSON obeject similar to the example below;</p>
+<pre><code class="has-line-data" data-line-start="120" data-line-end="134">{
+_id: &quot;5f51ca2c7cf1026aa0a50f95&quot;, directLink: &quot;https://openflags.net/usa/region/colorado.svg&quot;, 
+quickLink: &quot;colorado.svg&quot;, 
+region: &quot;colorado&quot;, 
+country: &quot;usa&quot;
+regionCode:'US-CO'
+}
 country: &quot;usa&quot;
 directLink: &quot;https://openflags.net/usa/region/colorado.svg&quot;
 quickLink: &quot;colorado.svg&quot;
@@ -74,22 +108,22 @@ region: &quot;colorado&quot;
 _id: &quot;5f51ca2c7cf1026aa0a50f95&quot;
 __proto__: Object
 </code></pre>
-<h3 class="code-line" data-line-start=91 data-line-end=92><a id="Objects_in_the_JSON_object_91"></a>Objects in the JSON object</h3>
-<p class="has-line-data" data-line-start="92" data-line-end="93">You can call the parameters inside the object with dot notation, similar to the example below;</p>
-<pre><code class="has-line-data" data-line-start="94" data-line-end="101">fetch('https://openflags.net/api/usa/colorado')
+<h3 class="code-line" data-line-start=134 data-line-end=135 ><a id="Objects_in_the_JSON_object_134"></a>Objects in the JSON object</h3>
+<p class="has-line-data" data-line-start="135" data-line-end="136">You can call the parameters inside the object with dot notation, similar to the example below;</p>
+<pre><code class="has-line-data" data-line-start="137" data-line-end="144">fetch('https://openflags.net/api/usa/colorado')
   .then(response =&gt; response.json())
   .then(data =&gt; {
       const flagPicLink =  data.flagInfo[0].directLink
       console.log(flagPicLink)
     });
 </code></pre>
-<p class="has-line-data" data-line-start="101" data-line-end="102">Setting a variable to after the flagInfo[0] obeject inside the flagInfo object will allow you to use any of the values in the object. In the above example, the response will simply be a string with a direct link to a SVG image; see below;</p>
-<pre><code class="has-line-data" data-line-start="103" data-line-end="105">&quot;https://openflags.net/usa/region/colorado.svg&quot;
+<p class="has-line-data" data-line-start="144" data-line-end="145">Setting a variable to after the flagInfo[0] obeject inside the flagInfo object will allow you to use any of the values in the object. In the above example, the response will simply be a string with a direct link to a SVG image; see below;</p>
+<pre><code class="has-line-data" data-line-start="146" data-line-end="148">&quot;https://openflags.net/usa/region/colorado.svg&quot;
 </code></pre>
-<h1 class="code-line" data-line-start=105 data-line-end=106><a id="NodeJS_Usage_105"></a>Node.JS Usage</h1>
-<h3 class="code-line" data-line-start=106 data-line-end=107><a id="http_module_Usage_106"></a>http module Usage</h3>
-<p class="has-line-data" data-line-start="107" data-line-end="108">To use Flag API with the standard Node library and not download any dependencies, or extra packages, follow the example bellow.</p>
-<pre><code class="has-line-data" data-line-start="109" data-line-end="129">const https = require('https');
+<h1 class="code-line" data-line-start=148 data-line-end=149 ><a id="NodeJS_Usage_148"></a>Node.JS Usage</h1>
+<h3 class="code-line" data-line-start=149 data-line-end=150 ><a id="http_module_Usage_149"></a>http module Usage</h3>
+<p class="has-line-data" data-line-start="150" data-line-end="151">To use Flag API with the standard Node library and not download any dependencies, or extra packages, follow the example bellow.</p>
+<pre><code class="has-line-data" data-line-start="152" data-line-end="172">const https = require('https');
 
 https.get('https://openflags.net/api/usa/colorado', (response) =&gt; {
   let data = '';
@@ -109,21 +143,22 @@ https.get('https://openflags.net/api/usa/colorado', (response) =&gt; {
   console.log(&quot;Error: &quot; + error.message);
 });
 </code></pre>
-<p class="has-line-data" data-line-start="129" data-line-end="130">The data variable alone will return an object with an array of objects from the server. The response will be similat to the example below;</p>
-<pre><code class="has-line-data" data-line-start="131" data-line-end="143">{
+<p class="has-line-data" data-line-start="172" data-line-end="173">The data variable mutates into an object with an array of objects from the server. The response will be similar to the example below;</p>
+<pre><code class="has-line-data" data-line-start="174" data-line-end="187">{
 flagInfo: [
   {
     _id: '5f51ca2c7cf1026aa0a50f95',
     directLink: 'https://openflags.net/usa/region/colorado.svg',
     quickLink: 'colorado.svg',
     region: 'colorado',
-    country: 'usa'
+    country: 'usa',
+    regionCode:'US-CO'
   }
 ]
 }
 </code></pre>
-<p class="has-line-data" data-line-start="144" data-line-end="145">Currently most flag responses will only return 1 position in the array, so it is safe to simply use data.flagInfo[0] with 0 in the array index to get the data from the main flagInfo object. you can make a similar request as the example below;</p>
-<pre><code class="has-line-data" data-line-start="147" data-line-end="167">const https = require('https');
+<p class="has-line-data" data-line-start="188" data-line-end="189">Currently most flag responses will only  return 1 position in the array, so it is safe to simply use data.flagInfo[0] with 0 in the array index to get the data from the main flagInfo object. you can make a similar request as the example below;</p>
+<pre><code class="has-line-data" data-line-start="191" data-line-end="211">const https = require('https');
 
 https.get('https://openflags.net/api/usa/colorado', (response) =&gt; {
   let data = '';
@@ -143,10 +178,22 @@ https.get('https://openflags.net/api/usa/colorado', (response) =&gt; {
   console.log(&quot;Error: &quot; + error.message);
 });
 </code></pre>
-<p class="has-line-data" data-line-start="167" data-line-end="168">Running this code will return only a single flag JSON object, such as the example below;</p>
-<pre><code class="has-line-data" data-line-start="169" data-line-end="171">"https://openflags.net/usa/region/colorado.svg"</code></pre>
-<p class="has-line-data" data-line-start="171" data-line-end="172">With dot notation on the JSON object of flagInfo[0] you can request specific items in the object, such as the example below;</p>
-<pre><code class="has-line-data" data-line-start="174" data-line-end="194">const https = require('https');
+<p class="has-line-data" data-line-start="211" data-line-end="212">Running this code will return only a single flag JSON object, such as the example below;</p>
+<pre><code class="has-line-data" data-line-start="213" data-line-end="226">{
+  flagInfo: [
+    {
+      _id: '5f51ca2c7cf1026aa0a50f95',
+      directLink: 'https://openflags.net/usa/region/colorado.svg',
+      quickLink: 'colorado.svg',
+      region: 'colorado',
+      country: 'usa'
+      regionCode:'US-CO'
+    }
+  ]
+}
+</code></pre>
+<p class="has-line-data" data-line-start="226" data-line-end="227">With dot notation on the JSON object of flagInfo[0] you can request specific items in the object, such as the example below;</p>
+<pre><code class="has-line-data" data-line-start="229" data-line-end="249">const https = require('https');
 
 https.get('https://openflags.net/api/usa/colorado', (response) =&gt; {
   let data = '';
@@ -166,22 +213,22 @@ https.get('https://openflags.net/api/usa/colorado', (response) =&gt; {
   console.log(&quot;Error: &quot; + error.message);
 });
 </code></pre>
-<p class="has-line-data" data-line-start="194" data-line-end="195">With ‘directLink’ after the data.flagInfo[0].directLink, the response from the API server will be the contects of dirctLink object, which is a String, such as the example below;</p>
-<pre><code class="has-line-data" data-line-start="196" data-line-end="198">&quot;https://openflags.net/usa/region/colorado.svg&quot;
+<p class="has-line-data" data-line-start="249" data-line-end="250">With ‘directLink’ after the data.flagInfo[0].directLink, the response from the API server will be the contects of dirctLink object, which is a String, such as the example below;</p>
+<pre><code class="has-line-data" data-line-start="251" data-line-end="253">&quot;https://openflags.net/usa/region/colorado.svg&quot;
 </code></pre>
-<h1 class="code-line" data-line-start=198 data-line-end=199 ><a id="JQuery_198"></a>JQuery Usage</h1>
-<p class="has-line-data" data-line-start="199" data-line-end="200">to use the api with JQuery, you can make a simple GET request, such as the example below;</p>
-<pre><code class="has-line-data" data-line-start="201" data-line-end="205">$.get( &quot;https://openflags.net/rando&quot;, function( data ) {
+<h1 class="code-line" data-line-start=253 data-line-end=254 ><a id="JQuery_Usage_253"></a>JQuery Usage</h1>
+<p class="has-line-data" data-line-start="254" data-line-end="255">to use the api with JQuery, you can make a simple GET request, such as the example below;</p>
+<pre><code class="has-line-data" data-line-start="256" data-line-end="260">$.get( &quot;https://openflags.net/rando&quot;, function( data ) {
  console.log(data)
  })
 </code></pre>
-<p class="has-line-data" data-line-start="205" data-line-end="206">The ‘data’ will be an object or a string depending on which endpoints you hit. In the example aboves case, the result would be a string containing a direct link of a random flag .svg file.</p>
-<h1 class="code-line" data-line-start=207 data-line-end=208 ><a id="Python_207"></a>Python Usage</h1>
-<p class="has-line-data" data-line-start="209" data-line-end="210">The simplest way to use Open Flags API with Python is with the requests module. First install it with;</p>
-<pre><code class="has-line-data" data-line-start="211" data-line-end="213">pip install requests
+<p class="has-line-data" data-line-start="260" data-line-end="261">The ‘data’ will be an object or a string depending on which endpoints you hit. In the example aboves case, the result would be a string containing a direct link of a random flag .svg file.</p>
+<h1 class="code-line" data-line-start=262 data-line-end=263 ><a id="Python_Usage_262"></a>Python Usage</h1>
+<p class="has-line-data" data-line-start="264" data-line-end="265">The simplest way to use Open Flags API with Python is with the requests module. First install it with;</p>
+<pre><code class="has-line-data" data-line-start="266" data-line-end="268">pip install requests
 </code></pre>
-<p class="has-line-data" data-line-start="213" data-line-end="214">Then in your python app, setup your GET request such as the code below;</p>
-<pre><code class="has-line-data" data-line-start="215" data-line-end="223">import requests
+<p class="has-line-data" data-line-start="268" data-line-end="269">Then in your python app, setup your GET request such as the code below;</p>
+<pre><code class="has-line-data" data-line-start="270" data-line-end="278">import requests
 
 response = requests.get(&quot;https://openflags.net/api/usa/california&quot;)
 
@@ -189,7 +236,17 @@ data = response.json()
 
 print(data)
 </code></pre>
-<p class="has-line-data" data-line-start="223" data-line-end="224">The result will be a python list such as below;</p>
-<pre><code class="has-line-data" data-line-start="225" data-line-end="227">{'flagInfo': [{'_id': '5f7e5591a46a711d00667b40', 'directLink': 'https://openflags.net/usa/region/california.svg', 'quickLink': 'california.svg', 'region': 'california', 'country': 'usa'}]}
+<p class="has-line-data" data-line-start="278" data-line-end="279">The result will be a python list such as below;</p>
+<pre><code class="has-line-data" data-line-start="280" data-line-end="292">{
+'flagInfo': 
+    [{
+        '_id': '5f7e5591a46a711d00667b40', 
+        'directLink': 'https://openflags.net/usa/region/california.svg', 
+        'quickLink': 'california.svg', 
+        'region': 'california', 
+        'country': 'usa', 
+        'regionCode':'US-CA'
+    }]
+}
 </code></pre>
 </body></html>

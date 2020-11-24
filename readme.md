@@ -6,13 +6,41 @@ The main usage intention for this flag API is to simply have an endpoint for a  
 
 The API endpoint can be use by any program that can work with images, SVGs, URLs, or JSONs
 
-# Use
-You can use this API in the way you use most APIs, I will give some examples.
+
+
+# Contribution 
+Until I have more than myself working on this, I will need you to please contact me directly at
+
+https://ianss.dev/contact or admin@mailpoem.com To contribute to the Open Flags API project.
+
+I look forward to working with you ( ͡° ͜ʖ ͡°)
+
 # Why are the documents the way they are?
 ```
-People don't want to know how to do things line by line...
-They just want big chunks of example code that works with minimal changing.
-                                                                         -Shyaboi
+People don't want to explained to death line by line...
+They just want big chunks of example code that gets the job done with minimal changing.
+                                                                                 -Shyaboi
+```
+# Use
+Currently the Open Flags API returns JSON flagInfo data, and direct links to flag .svg images.
+
+
+
+# Routes
+There are several enpoints that you can get flag data from
+The basic breakdown of routes is as follows;
+```
+//will return a random direct link to a flag .svg
+GET https://openflags.net/rando     
+
+//will return a JSON of availible flagInfo based on country/region search
+GET https://openflags.net/api/:country/:region   
+
+//will return a JSON of availible flagInfo based on ISO 3166 region code
+GET https://openflags.net/ISO3166/:regionCode    
+
+//will return a direct link to the .svg flag at that country/region
+https://openflags.net/:country/:region/:region.svg
 ```
 
 # cURL Usage
@@ -48,7 +76,15 @@ curl https://openflags.net/api/usa/colorado
 ```
 This will generate a JSON response similar to the example below;
 ```
-flagInfo":[{"_id":"5f51ca2c7cf1026aa0a50f95","directLink":"https://openflags.net/usa/region/colorado.svg","quickLink":"colorado.svg","region":"colorado","country":"usa"}]
+flagInfo":
+[{
+            "_id":"5f51ca2c7cf1026aa0a50f95",
+            "directLink":"https://openflags.net/usa/region/colorado.svg",
+            "quickLink":"colorado.svg",
+            "region":"colorado",
+            "country":"usa"
+            "regionCode":'US-CO'
+}]
 ```
 # Javascript Fetch Usage
 To use a Javascript fetch request to get information into your JS code. you can make a similar request as the example below;
@@ -66,6 +102,7 @@ country: "usa"
 directLink: "https://openflags.net/usa/region/colorado.svg"
 quickLink: "colorado.svg"
 region: "colorado"
+regionCode:'US-CO'
 _id: "5f51ca2c7cf1026aa0a50f95"
 __proto__: Object
 length: 1
@@ -81,7 +118,13 @@ Currently most flag responses will only  return 1 position in the array, so it i
   ```
   The response will be a JSON obeject similar to the example below;
   ```
-  {_id: "5f51ca2c7cf1026aa0a50f95", directLink: "https://openflags.net/usa/region/colorado.svg", quickLink: "colorado.svg", region: "colorado", country: "usa"}
+ {
+  _id: "5f51ca2c7cf1026aa0a50f95", directLink: "https://openflags.net/usa/region/colorado.svg", 
+  quickLink: "colorado.svg", 
+  region: "colorado", 
+  country: "usa"
+  regionCode:'US-CO'
+ }
 country: "usa"
 directLink: "https://openflags.net/usa/region/colorado.svg"
 quickLink: "colorado.svg"
@@ -127,7 +170,7 @@ https.get('https://openflags.net/api/usa/colorado', (response) => {
   console.log("Error: " + error.message);
 });
 ```
-  The data variable alone will return an object with an array of objects from the server. The response will be similat to the example below;
+  The data variable mutates into an object with an array of objects from the server. The response will be similar to the example below;
   ```
 {
   flagInfo: [
@@ -136,7 +179,8 @@ https.get('https://openflags.net/api/usa/colorado', (response) => {
       directLink: 'https://openflags.net/usa/region/colorado.svg',
       quickLink: 'colorado.svg',
       region: 'colorado',
-      country: 'usa'
+      country: 'usa',
+      regionCode:'US-CO'
     }
   ]
 }
@@ -167,7 +211,18 @@ https.get('https://openflags.net/api/usa/colorado', (response) => {
 ```
 Running this code will return only a single flag JSON object, such as the example below;
 ```
-ghgf
+{
+  flagInfo: [
+    {
+      _id: '5f51ca2c7cf1026aa0a50f95',
+      directLink: 'https://openflags.net/usa/region/colorado.svg',
+      quickLink: 'colorado.svg',
+      region: 'colorado',
+      country: 'usa'
+      regionCode:'US-CO'
+    }
+  ]
+}
 ```
 With dot notation on the JSON object of flagInfo[0] you can request specific items in the object, such as the example below;
 
@@ -206,7 +261,6 @@ $.get( "https://openflags.net/rando", function( data ) {
  The 'data' will be an object or a string depending on which endpoints you hit. In the example aboves case, the result would be a string containing a direct link of a random flag .svg file.
  
  # Python Usage
- ## Request Module
 
 The simplest way to use Open Flags API with Python is with the requests module. First install it with;
 ```
@@ -224,13 +278,15 @@ print(data)
 ```
 The result will be a python list such as below;
 ```
-{'flagInfo': [{'_id': '5f7e5591a46a711d00667b40', 'directLink': 'https://openflags.net/usa/region/california.svg', 'quickLink': 'california.svg', 'region': 'california', 'country': 'usa'}]}
+{
+'flagInfo': 
+    [{
+        '_id': '5f7e5591a46a711d00667b40', 
+        'directLink': 'https://openflags.net/usa/region/california.svg', 
+        'quickLink': 'california.svg', 
+        'region': 'california', 
+        'country': 'usa', 
+        'regionCode':'US-CA'
+    }]
+}
 ```
-
-
-# Contribution 
-Until I have more than myself working on this, I will need you to please contact me directly at
-<br />
-https://ianss.dev/contact or admin@mailpoem.com To contribute to the Open Flags API project.
-<br />
-I look forward to working with you ( ͡° ͜ʖ ͡°)
