@@ -5,13 +5,14 @@
 
 
     <div class="col mx-auto border" id="flagBox" style="margin: .5rem;">
-    <a href="/{{this.country}}/region/{{this.quickLink}}"> <img data-src="/{{this.country}}/region/{{this.quickLink}}" class="lazyload img-fluid" alt="Responsive image"></a>
+    <a href="/{{this.country}}/region/{{this.quickLink}}"> <img data-src="/{{this.country}}/region/{{this.quickLink}}" class="lazyload img-fluid" alt="flag of {{this.region}}"></a>
       <p>Country: {{this.country}}</p>
       <p>Region: {{this.region}}</p>
+      <p>ISO 3166: {{this.regionCode}}</p>
 
-      <a class="badge badge-info text-wrap" style="width: 7rem;" href="/{{this.country}}/region/{{this.quickLink}}">
+      <a class="badge badge-info text-wrap" style="width: 6rem;" href="/{{this.country}}/region/{{this.quickLink}}">
         Direct Link</a>
-      <a class="badge badge-info text-wrap" style="width: 7rem;" href="/api/{{this.country}}/{{this.region}}">
+      <a class="badge badge-info text-wrap" style="width: 6rem;" href="/api/{{this.country}}/{{this.region}}">
         API JSON</a>
 
     </div>
