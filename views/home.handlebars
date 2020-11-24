@@ -13,13 +13,16 @@
         <p>Region: {{this.region}}</p>
         <p>ISO 3166: {{this.regionCode}}</p>
 
-        <button class="btn btn-outline-success" type="button" style="width: 31rem; height: 2rem;" >
-          <a class="text-dark" href='/{{this.country}}/region/{{this.quickLink}}'> Direct Link</a>
+          <a href='/{{this.country}}/region/{{this.quickLink}}'>
+        <button class="btn btn-outline-success" href='/{{this.country}}/region/{{this.quickLink}}' type="button" style="width: 31rem; height: 2rem;" >
+           Direct Link
       </button>
+           </a>
+          <a  href="/api/{{this.country}}/{{this.region}}">
         <button class="btn btn-outline-success" type="button" style="width: 31rem; height: 2rem;">
-          <a class="text-dark" href="/api/{{this.country}}/{{this.region}}">API JSON</a>
-          
+          API JSON
           </button>
+          </a>
       </div>
     </div>
     {{/each}}
