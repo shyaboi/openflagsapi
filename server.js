@@ -271,7 +271,7 @@ app.get("/api/:country/:region?", function (request, response) {
 app.get("/ISO3166/:regionCode?", (request, response) => {
   let regionCode = request.params.regionCode;
   console.log(regionCode)
- const rCode = allFlags.find((record) => record.regionCode === regionCode)
+ const rCode = allFlags.filter((record) => record.regionCode === regionCode)
 
  console.log(rCode)
   response.json({ flagInfo:rCode });
