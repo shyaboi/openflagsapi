@@ -270,6 +270,8 @@ app.get("/api/json/flagInfo/:country/:region?", function (request, response) {
   response.json({ flagInfo });
 });
 
+
+//get route for region code search
 app.get("/api/json/ISO3166/:regionCode?", (request, response) => {
   let regionCode = request.params.regionCode;
   console.log(regionCode)
@@ -277,8 +279,13 @@ app.get("/api/json/ISO3166/:regionCode?", (request, response) => {
 
  console.log(rCode)
   response.json({ flagInfo:rCode });
-
 })
+
+//route to list flags availible regions in country
+
+// app.get("api/list/ISO3166/:countryCode?"), (request,response)=>{
+
+// }
 
 
 

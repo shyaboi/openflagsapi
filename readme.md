@@ -34,10 +34,10 @@ The basic breakdown of routes is as follows;
 GET https://openflags.net/rando     
 
 //will return JSON of availible flagInfo based on country/region search
-GET https://openflags.net/api/:country/:region   
+GET https://openflags.net/api/json/flagInfo/:country/:region   
 
 //will return JSON of availible flagInfo based on ISO 3166 region code
-GET https://openflags.net/ISO3166/:regionCode    
+GET https://openflags.net/api/json/ISO3166/:regionCode    
 
 //will return a direct link to the .svg flag at that country/region
 https://openflags.net/:country/:region/:region.svg
