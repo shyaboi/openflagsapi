@@ -262,13 +262,15 @@ app.post("/postflags", (request, response) => {
 
 // app.use("/", home);
 // routes--------------------------------------------------------------------------------------------------
-app.get("/api/:country/:region?", function (request, response) {
+
+//get route for country and region
+app.get("/api/json/flagInfo/:country/:region?", function (request, response) {
   let keyParam = request.params.region;
   let flagInfo = allFlags.find((record) => record.region === keyParam);
   response.json({ flagInfo });
 });
 
-app.get("/ISO3166/:regionCode?", (request, response) => {
+app.get("/api/json/ISO3166/:regionCode?", (request, response) => {
   let regionCode = request.params.regionCode;
   console.log(regionCode)
  const rCode = allFlags.filter((record) => record.regionCode === regionCode)
