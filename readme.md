@@ -2,7 +2,7 @@
 this is a flag API currently in αlpha
 
 # Use Case
-The main usage intention for this flag API is to simply have an endpoint for a  <img src="image.svg"> html. or any other information helpful to users in JSON object form related to maps.
+The main usage intention for this flag API is to simply have an endpoint for a  <img src="image.svg"> html. or any other information helpful to users in JSON object form related to flags.
 
 The API endpoint can be use by any program that can work with images, SVGs, URLs, or JSONs
 
