@@ -10,10 +10,13 @@ The API endpoint can be use by any program that can work with images, SVGs, URLs
 
 # Contribution 
 Until I have more than myself working on this, I will need you to please contact me directly at
-
+a
 https://ianss.dev/contact or admin@mailpoem.com To contribute to the Open Flags API project.
 
+[You can find the Open Flags API github page here.](https://github.com/shyaboi/openflagsapi "Open Flags's GitHub Homepage")
+
 I look forward to working with you ( ͡° ͜ʖ ͡°)
+
 
 # Why are the documents the way they are?
 ```
