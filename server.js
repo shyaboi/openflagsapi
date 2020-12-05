@@ -221,11 +221,11 @@ app.post("/newfaq", (request, response) => {
 // app.post("/postflags", (request, response) => {
 //   var regionName = [];
 
-//   var arrayOfFiles = fs.readdirSync("./public/indonesia/region");
+//   var arrayOfFiles = fs.readdirSync("./public/skorea/region");
 //   // var regionName =JSON.stringify(arrayOfFiles)
 //   const thing = arrayOfFiles.map((links) => {
 //     let region = links.slice(0, -4);
-//     let country = "indonesia";
+//     let country = "skorea";
 //     let directLink =
 //       "https://openflags.net/" + country + "/region/" + region + ".svg";
 //     const quickLink = region + ".svg";
