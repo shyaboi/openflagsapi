@@ -217,6 +217,20 @@ app.post("/newfaq", (request, response) => {
   }, 100);
 });
 
+// app.post('/rename', (request,response)=> {
+//   MongoClient.connect(
+//     mongoDB,
+//     { useNewUrlParser: true, useUnifiedTopology: true },
+//     function (err, db) {
+//       if (err) throw err;
+//       var dbo = db.db("Flags");
+//       // var myobj = mongoModle;
+//       dbo.collection("flag").updateMany({}, {$rename:{'ISO3166':'ISO3166-2'}})
+//     }
+//     )
+//     console.log('changed')
+//     response.send('all done')
+// })
 
 // app.post("/postflags", (request, response) => {
 //   var regionName = [];
@@ -243,15 +257,15 @@ app.post("/newfaq", (request, response) => {
 //   console.log(thing);
 //   MongoClient.connect(
 //     mongoDB,
-//     { useNewUrlParser: true, useUnifiedTopology: true },
-//     function (err, db) {
-//       if (err) throw err;
-//       var dbo = db.db("Flags");
-//       // var myobj = mongoModle;
-//       dbo.collection("flag").insertMany(thing, function (err, res) {
-//         if (err) throw err;
-//         console.log("\x1b[36m", "flags posted!");
-//         db.close();
+    // { useNewUrlParser: true, useUnifiedTopology: true },
+    // function (err, db) {
+    //   if (err) throw err;
+    //   var dbo = db.db("Flags");
+    //   // var myobj = mongoModle;
+    //   dbo.collection("flag").insertMany(thing, function (err, res) {
+    //     if (err) throw err;
+    //     console.log("\x1b[36m", "flags posted!");
+    //     db.close();
 //       });
 //     }
 //   );
