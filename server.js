@@ -232,47 +232,50 @@ app.post("/newfaq", (request, response) => {
 //     response.send('all done')
 // })
 
-// app.post("/postflags", (request, response) => {
-//   var regionName = [];
+let countryPosting = 'russia'
+let postCountryCode = 'RU-'
+app.post("/postflags", (request, response) => {
+  var regionName = [];
 
-//   var arrayOfFiles = fs.readdirSync("./public/skorea/region");
-//   // var regionName =JSON.stringify(arrayOfFiles)
-//   const thing = arrayOfFiles.map((links) => {
-//     let region = links.slice(0, -4);
-//     let country = "skorea";
-//     let directLink =
-//       "https://openflags.net/" + country + "/region/" + region + ".svg";
-//     const quickLink = region + ".svg";
-//     // const ID = uuidv4()
-//     return { directLink, quickLink, region, country };
-//   });
+  var arrayOfFiles = fs.readdirSync(`./public/${countryPosting}/region`);
+  // var regionName =JSON.stringify(arrayOfFiles)
+  const thing = arrayOfFiles.map((links) => {
+    let region = links.slice(0, -4);
+    let country = countryPosting;
+    let ISO31662 = postCountryCode;
 
-//   console.log(thing)
-//   // const mongoModle = new FlagModel({
-//   // link:arrayOfFiles,
-//   // region:thing
-//   // });
+    let directLink =
+      "https://openflags.net/" + country + "/region/" + region + ".svg";
+    const quickLink = region + ".svg";
+    // const ID = uuidv4()
+    return { directLink, quickLink, region, country, ISO31662 };
+  });
 
-//   // let benix=[{link:thing},{region:re}]
-//   console.log(thing);
-//   MongoClient.connect(
-//     mongoDB,
-    // { useNewUrlParser: true, useUnifiedTopology: true },
-    // function (err, db) {
-    //   if (err) throw err;
-    //   var dbo = db.db("Flags");
-    //   // var myobj = mongoModle;
-    //   dbo.collection("flag").insertMany(thing, function (err, res) {
-    //     if (err) throw err;
-    //     console.log("\x1b[36m", "flags posted!");
-    //     db.close();
-//       });
-//     }
-//   );
-//   setTimeout(() => {
-//     response.redirect(`/`);
-//   }, 300);
-// });
+  console.log(thing)
+  // const mongoModle = new FlagModel({
+  // link:arrayOfFiles,
+  // region:thing
+  // });
+
+  // let benix=[{link:thing},{region:re}]
+  MongoClient.connect(
+    mongoDB,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("Flags");
+      // var myobj = mongoModle;
+      dbo.collection("flag").insertMany(thing, function (err, res) {
+        if (err) throw err;
+        console.log("\x1b[36m", "flags posted!");
+        db.close();
+      });
+    }
+  );
+  setTimeout(() => {
+    response.redirect(`/`);
+  }, 300);
+});
 
 // app.use("/", home);
 // routes--------------------------------------------------------------------------------------------------

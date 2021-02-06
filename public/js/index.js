@@ -10,10 +10,15 @@ $(document).ready(function () {
       $("html").css('z-index', '-11');
       $("html").css("background-image", `url(${imageUrl})`);
       $("html").css('background-size','auto');
+      $("body").parent().prev().prev().css({opacity:.2});
+      $("body").css('z-index', '-11');
+      $("body").css("background-image", `url(${imageUrl})`);
+      $("body").css('background-size','auto');
     });
     // alert("Data: " + data + "\nStatus: " + status);
   });
 });
+
 var randFlag = $.get( "/rando", function( data ) {
   // $("#logoRand").src=data;
   console.log(data)
