@@ -19,7 +19,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 require("dotenv").config();
 const donus = process.env.MONGO_THING;
-const mongoDB = `mongodb+srv://shyaboi:${donus}@cluster0.zqw64.azure.mongodb.net/donu?retryWrites=true&w=majority`;
+const mongoDB = donus;
 var NewFlag = new Schema({
   link: String,
   // region:String
@@ -277,7 +277,6 @@ app.post("/postflags", (request, response) => {
   }, 300);
 });
 
-// app.use("/", home);
 // routes--------------------------------------------------------------------------------------------------
 
 //get route for country and region
