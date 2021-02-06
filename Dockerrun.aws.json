@@ -1,0 +1,14 @@
+{
+    "AWSEBDockerrunVersion": "1",
+    "Image": {
+      "Name": "shyaboi/open-flags",
+      "Update": "true"
+    },
+    "Ports": [
+      {
+        "ContainerPort": 4443,
+        "HostPort": 4444
+      }
+    ],
+    "Logging": "/var/log/nginx"
+  }
