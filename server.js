@@ -234,6 +234,7 @@ app.post("/newfaq", (request, response) => {
 
 let countryPosting = 'russia'
 let postCountryCode = 'RU-'
+
 app.post("/postflags", (request, response) => {
   var regionName = [];
 
