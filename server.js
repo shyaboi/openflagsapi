@@ -1,8 +1,6 @@
 var fs = require("fs");
-var path = require("path");
 var express = require("express");
 var app = express();
-var router = express.Router();
 var PORT = process.env.port || 4443;
 const exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs());
@@ -52,11 +50,10 @@ app.use(function (req, res, next) {
 });
 // coooooooooooooooooorrrrrrrrrrrrrrrrrrrrrrrrrssssssssssssssssssssssssssssss
 
-// var NewPost = new Schema({
-//   link:String,
-//   country:String
-//   region:String
-// });
+
+
+
+
 app.get("/docs", (request, response) => {
   response.render(`docs`);
 });
@@ -225,7 +222,7 @@ app.post("/newfaq", (request, response) => {
 //       if (err) throw err;
 //       var dbo = db.db("Flags");
 //       // var myobj = mongoModle;
-//       dbo.collection("flag").updateMany({}, {$rename:{'ISO3166':'ISO3166-2'}})
+//       dbo.collection("flag").updateMany({}, {$rename:{'ISO3166-2':'ISO3166'}})
 //     }
 //     )
 //     console.log('changed')
@@ -235,48 +232,42 @@ app.post("/newfaq", (request, response) => {
 let countryPosting = 'russia'
 let postCountryCode = 'RU-'
 
-app.post("/postflags", (request, response) => {
-  var regionName = [];
+// app.post("/postflags", (request, response) => {
+//   var regionName = [];
 
-  var arrayOfFiles = fs.readdirSync(`./public/${countryPosting}/region`);
-  // var regionName =JSON.stringify(arrayOfFiles)
-  const thing = arrayOfFiles.map((links) => {
-    let region = links.slice(0, -4);
-    let country = countryPosting;
-    let ISO31662 = postCountryCode;
+//   var arrayOfFiles = fs.readdirSync(`./public/${countryPosting}/region`);
+//   // var regionName =JSON.stringify(arrayOfFiles)
+//   const thing = arrayOfFiles.map((links) => {
+//     let region = links.slice(0, -4);
+//     let country = countryPosting;
+//     let ISO3166 = postCountryCode;
 
-    let directLink =
-      "https://openflags.net/" + country + "/region/" + region + ".svg";
-    const quickLink = region + ".svg";
-    // const ID = uuidv4()
-    return { directLink, quickLink, region, country, ISO31662 };
-  });
+//     let directLink =
+//       "https://openflags.net/" + country + "/region/" + region + ".svg";
+//     const quickLink = region + ".svg";
+//     // const ID = uuidv4()
+//     return { directLink, quickLink, region, country, ISO3166 };
+//   });
 
-  console.log(thing)
-  // const mongoModle = new FlagModel({
-  // link:arrayOfFiles,
-  // region:thing
-  // });
-
-  // let benix=[{link:thing},{region:re}]
-  MongoClient.connect(
-    mongoDB,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("Flags");
-      // var myobj = mongoModle;
-      dbo.collection("flag").insertMany(thing, function (err, res) {
-        if (err) throw err;
-        console.log("\x1b[36m", "flags posted!");
-        db.close();
-      });
-    }
-  );
-  setTimeout(() => {
-    response.redirect(`/`);
-  }, 300);
-});
+//   console.log(thing)
+//   MongoClient.connect(
+//     mongoDB,
+//     { useNewUrlParser: true, useUnifiedTopology: true },
+//     function (err, db) {
+//       if (err) throw err;
+//       var dbo = db.db("Flags");
+//       // var myobj = mongoModle;
+//       dbo.collection("flag").insertMany(thing, function (err, res) {
+//         if (err) throw err;
+//         console.log("\x1b[36m", "flags posted!");
+//         db.close();
+//       });
+//     }
+//   );
+//   setTimeout(() => {
+//     response.redirect(`/`);
+//   }, 300);
+// });
 
 // routes--------------------------------------------------------------------------------------------------
 
@@ -292,23 +283,24 @@ app.get("/api/json/flagInfo/:country/:region?", function (request, response) {
 app.get("/api/json/ISO3166/:regionCode?", (request, response) => {
   let regionCode = request.params.regionCode;
   console.log(regionCode)
- const rCode = allFlags.filter((record) => record.regionCode === regionCode)
+  // console.log(allFlags)
+ const ISO = allFlags.filter((record) => record.ISO3166 === regionCode)
 
- console.log(rCode)
-  response.json({ flagInfo:rCode });
+ console.log(ISO)
+  response.json({ flagInfo:ISO });
 })
 
 //route to list flags availible regions in country
 
-app.get("api/list/ISO3166/:countryCode?"), (request,response)=>{
-  
-  let countryCode = request.params.countryCode;
-  console.log(countryCode)
- const cCode = allFlags.filter((record) => record.regionCode === countryCode)
+app.get("/api/list/:country", function (request, response) {
+  let country = request.params.country;
+  console.log(country)
+  // console.log(allFlags)
+ const countryList = allFlags.filter((record) => record.country === country)
 
- console.log(cCode)
-  // response.json({ flagInfo:cCode });
-}
+ console.log(countryList)
+  response.json({ flagInfo:countryList });
+});
 
 
 
