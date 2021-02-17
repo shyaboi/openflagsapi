@@ -292,7 +292,7 @@ app.get("/api/json/ISO3166/:regionCode?", (request, response) => {
 
 //route to list flags availible regions in country
 
-app.get("/api/list/:country", function (request, response) {
+app.get("/api/list/country/:country", function (request, response) {
   let country = request.params.country;
   console.log(country)
   // console.log(allFlags)
