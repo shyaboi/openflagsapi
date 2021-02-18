@@ -154,6 +154,7 @@ app.get("/", (request, response) => {
 app.get("/all", (request, response) => {
   const ipp =
     request.header("x-forwarded-for") || request.connection.remoteAddress;
+    // console.log(allFlags)
   const ip = ipp.slice(7);
   console.log("ip1:" + ip);
   response.json({allFlags});
