@@ -40,10 +40,7 @@ var FAQsModel = mongoose.model("NewFAQPost", NewFAQ);
 app.use(express.static(__dirname + "./public/"));
 app.use("/docs", express.static("public"));
 // coooooooooooooooooorrrrrrrrrrrrrrrrrrrrrrrrrssssssssssssssssssssssssssssss
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('/', function (req, res) {
-   res.sendFile(path.join(__dirname, 'build', 'index.html'));
- });
+
 
 
 app.use(function (req, res, next) {
@@ -291,7 +288,10 @@ app.get("/api/list/country/:country", function (request, response) {
   response.json({ flagInfo:countryList });
 });
 
-
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('/*', function (req, res) {
+   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+ });
 
 // dns call to server
 require("dns").lookup(require("os").hostname(), function (err, add, fam) {
