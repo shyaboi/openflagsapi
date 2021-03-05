@@ -6,10 +6,6 @@ var express = require("express");
 var app = express();
 //set port process env 
 var PORT = process.env.port || 4443;
-//import handlebars
-const exphbs = require("express-handlebars");
-app.engine("handlebars", exphbs());
-app.set("view engine", "handlebars");
 //use public in static
 app.use(express.static(__dirname + "/public"));
 //import uuid
@@ -28,10 +24,7 @@ const Schema = mongoose.Schema;
 require("dotenv").config();
 const donus = process.env.MONGO_THING;
 const mongoDB = donus;
-var NewFlag = new Schema({
-  link: String,
-  // region:String
-});
+
 var NewFAQ = new Schema({
   person: String,
   message: String,
@@ -43,9 +36,6 @@ var FAQsModel = mongoose.model("NewFAQPost", NewFAQ);
 
 // mongo-----------------------------------------------------------------------------------------------------
 
-// routes--------------------------------------------------------------------------------------------------
-var home = require("./routes/home");
-const { all } = require("./routes/home");
 app.use(express.static(__dirname + "./public/"));
 app.use("/docs", express.static("public"));
 // coooooooooooooooooorrrrrrrrrrrrrrrrrrrrrrrrrssssssssssssssssssssssssssssss
@@ -60,13 +50,6 @@ app.use(function (req, res, next) {
 });
 // coooooooooooooooooorrrrrrrrrrrrrrrrrrrrrrrrrssssssssssssssssssssssssssssss
 
-
-
-
-//get docs route
-app.get("/docs", (request, response) => {
-  response.render(`docs`);
-});
 
 
 //get faqs route
@@ -97,7 +80,7 @@ app.get("/faqs", (request, response) => {
             const faq = results;
             console.log(faq);
             db.close();
-            response.render(`faqs`, {
+            response.json({
               faq: faq,
             });
           });
