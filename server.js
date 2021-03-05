@@ -1,16 +1,23 @@
+//importing fs
 var fs = require("fs");
+//setup express import 
 var express = require("express");
+//setup express import var
 var app = express();
+//set port process env 
 var PORT = process.env.port || 4443;
-const exphbs = require("express-handlebars");
-app.engine("handlebars", exphbs());
-app.set("view engine", "handlebars");
+//use public in static
 app.use(express.static(__dirname + "/public"));
+//import uuid
 const { v4: uuidv4 } = require("uuid");
+//import body parser
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded());
-
 app.use(bodyParser.json());
+// const path = require('path');
+const path = require('path');
+
+
 // mongo-----------------------------------------------------------------------------------------------------
 const { MongoClient } = require("mongodb");
 const mongoose = require("mongoose");
@@ -18,10 +25,7 @@ const Schema = mongoose.Schema;
 require("dotenv").config();
 const donus = process.env.MONGO_THING;
 const mongoDB = donus;
-var NewFlag = new Schema({
-  link: String,
-  // region:String
-});
+
 var NewFAQ = new Schema({
   person: String,
   message: String,
@@ -33,12 +37,11 @@ var FAQsModel = mongoose.model("NewFAQPost", NewFAQ);
 
 // mongo-----------------------------------------------------------------------------------------------------
 
-// routes--------------------------------------------------------------------------------------------------
-var home = require("./routes/home");
-const { all } = require("./routes/home");
 app.use(express.static(__dirname + "./public/"));
 app.use("/docs", express.static("public"));
 // coooooooooooooooooorrrrrrrrrrrrrrrrrrrrrrrrrssssssssssssssssssssssssssssss
+
+
 
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -52,16 +55,14 @@ app.use(function (req, res, next) {
 
 
 
-
-
-app.get("/docs", (request, response) => {
-  response.render(`docs`);
-});
+//get faqs route
 app.get("/faqs", (request, response) => {
+  //ip tracking from header info
   const ipp =
     request.header("x-forwarded-for") || request.connection.remoteAddress;
   const ip = ipp.slice(7);
   console.log("ip1:" + ip);
+  //setting up faq to go to mongo to get faqs the slow way on request to illistrate difference in speed
   const faqs = () => {
     MongoClient.connect(
       mongoDB,
@@ -82,7 +83,7 @@ app.get("/faqs", (request, response) => {
             const faq = results;
             console.log(faq);
             db.close();
-            response.render(`faqs`, {
+            response.json({
               faq: faq,
             });
           });
@@ -110,21 +111,12 @@ const getAll = () => {
         .sort(mysort)
         .toArray(function (err, result) {
           if (err) throw err;
-          // for (let i = 0; i < result.length; i++) {
-          //   const all = result[i];
-          // console.log("\x1b[35m", element.name);
-          // var getAl = all.name
-          // console.log(getAl)
+
           const results = result.map((wall) => {
             return wall;
           });
           allFlags = results;
-          // for (let i = 0; i < flagInfo.length; i++) {
-          //   const element = JSON.stringify(flagInfo[i].comment);
-          //   console.log(element)
-          // }
 
-          // }
           for (let i = 0; i < 300; i++) {
           let dinus = Math.floor(Math.random() * allFlags.length);
           // console.log(dinus)
@@ -140,16 +132,8 @@ const getAll = () => {
   );
 };
 getAll();
-// console.log(allFlags)
-app.get("/", (request, response) => {
-  const ipp =
-    request.header("x-forwarded-for") || request.connection.remoteAddress;
-  const ip = ipp.slice(7);
-  console.log("ip1:" + ip);
-  response.render(`home`, {
-    flagInfo: allFlags,
-  });
-});
+
+
 
 app.get("/all", (request, response) => {
   const ipp =
@@ -159,13 +143,7 @@ app.get("/all", (request, response) => {
   console.log("ip1:" + ip);
   response.json({allFlags});
 });
-// const gertAll = async () => {
 
-  
-          
-//     }
-  // );
-// };
 
 const fillRando = ()=> {
   for (let i = 0; i < 300; i++) {
@@ -310,7 +288,10 @@ app.get("/api/list/country/:country", function (request, response) {
   response.json({ flagInfo:countryList });
 });
 
-
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('/*', function (req, res) {
+   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+ });
 
 // dns call to server
 require("dns").lookup(require("os").hostname(), function (err, add, fam) {
