@@ -15,6 +15,7 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 // const path = require('path');
+const path = require('path');
 
 
 // mongo-----------------------------------------------------------------------------------------------------
@@ -39,6 +40,11 @@ var FAQsModel = mongoose.model("NewFAQPost", NewFAQ);
 app.use(express.static(__dirname + "./public/"));
 app.use("/docs", express.static("public"));
 // coooooooooooooooooorrrrrrrrrrrrrrrrrrrrrrrrrssssssssssssssssssssssssssssss
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('/', function (req, res) {
+   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+ });
+
 
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");

@@ -1,13 +1,13 @@
 {
     "AWSEBDockerrunVersion": "1",
     "Image": {
-      "Name": "shyaboi/open-flags",
+      "Name": "shyaboi/openfb",
       "Update": "true"
     },
     "Ports": [
       {
         "ContainerPort": 4443,
-        "HostPort": 4444
+        "HostPort": 4443
       }
     ],
     "Logging": "/var/log/nginx"
