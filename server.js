@@ -108,21 +108,12 @@ const getAll = () => {
         .sort(mysort)
         .toArray(function (err, result) {
           if (err) throw err;
-          // for (let i = 0; i < result.length; i++) {
-          //   const all = result[i];
-          // console.log("\x1b[35m", element.name);
-          // var getAl = all.name
-          // console.log(getAl)
+
           const results = result.map((wall) => {
             return wall;
           });
           allFlags = results;
-          // for (let i = 0; i < flagInfo.length; i++) {
-          //   const element = JSON.stringify(flagInfo[i].comment);
-          //   console.log(element)
-          // }
 
-          // }
           for (let i = 0; i < 300; i++) {
           let dinus = Math.floor(Math.random() * allFlags.length);
           // console.log(dinus)
@@ -138,17 +129,7 @@ const getAll = () => {
   );
 };
 getAll();
-// console.log(allFlags)
-//replacing home with reactapp--------------------------============================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-// app.get("/", (request, response) => {
-//   const ipp =
-//     request.header("x-forwarded-for") || request.connection.remoteAddress;
-//   const ip = ipp.slice(7);
-//   console.log("ip1:" + ip);
-//   response.render(`home`, {
-//     flagInfo: allFlags,
-//   });
-// });
+
 
 
 app.get("/all", (request, response) => {
@@ -159,13 +140,7 @@ app.get("/all", (request, response) => {
   console.log("ip1:" + ip);
   response.json({allFlags});
 });
-// const gertAll = async () => {
 
-  
-          
-//     }
-  // );
-// };
 
 const fillRando = ()=> {
   for (let i = 0; i < 300; i++) {
