@@ -196,7 +196,7 @@ app.post("/newfaq", (request, response) => {
     }
   );
   setTimeout(() => {
-    response.redirect(`/faqs`);
+    response.redirect(`/ufaqs`);
   }, 100);
 });
 
