@@ -133,6 +133,9 @@ const getAll = () => {
 };
 getAll();
 
+app.get('/', (request, response)=>{
+  response.send('open flags online')
+})
 
 
 app.get("/all", (request, response) => {
