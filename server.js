@@ -53,7 +53,10 @@ app.use(function (req, res, next) {
 });
 // coooooooooooooooooorrrrrrrrrrrrrrrrrrrrrrrrrssssssssssssssssssssssssssssss
 
-
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('/', function (req, res) {
+   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+ });
 
 //get faqs route
 app.get("/faqs", (request, response) => {
@@ -291,10 +294,7 @@ app.get("/api/list/country/:country", function (request, response) {
   response.json({ flagInfo:countryList });
 });
 
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('/*', function (req, res) {
-   res.sendFile(path.join(__dirname, 'build', 'index.html'));
- });
+
 
 // dns call to server
 require("dns").lookup(require("os").hostname(), function (err, add, fam) {
